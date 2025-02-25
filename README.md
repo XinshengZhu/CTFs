@@ -2,3 +2,5 @@
 A repository that contains solver scripts and writeups for CTFs.
 
 **_I am currently playing as 4n74r3s with NYUSEC!!!_**
+
+**_Now Ranked 2nd in lab's CTF Points Spreadsheet!!!_**
