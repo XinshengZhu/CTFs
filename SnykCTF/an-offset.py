@@ -2,8 +2,6 @@ from pwn import *
 
 p = process('./an-offset')
 
-
-
 str = 'vompdl`nf`234'
 password = ''
 for i in range(len(str)):
