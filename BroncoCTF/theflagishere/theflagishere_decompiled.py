@@ -1,5 +1,7 @@
 #! /usr/bin/python3
 
+# Decompiled by pycdc
+# https://github.com/zrax/pycdc
 
 def what_do_i_do(whoKnows):
     a_st = { }
@@ -141,3 +143,5 @@ flag += char_2_5_9()
 flag += char_10()
 flag += '}'
 print(flag)
+
+# bronco{i_am_a_flag}
