@@ -1,3 +1,0 @@
-set a breakpoint in GDB: b *(camlStdlib__List__map_482+0x2c)
-the flag characters (bytes) are in the $rdx register
-texsaw{a_b1t_0f_0c4ml_r3v3rs3}
