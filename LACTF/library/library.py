@@ -5,10 +5,10 @@ context.log_level = 'debug'
 context.terminal = ['tmux', 'splitw', '-h']
 
 p = gdb.debug(['./ld-linux-x86-64.so.2', '--library-path', '.', './library'], gdbscript='''
-    # b *(main+306)
-    # b *(main+318)
-    # b *(main+330)
-    # b *(main+342)
+    b *(main+306)
+    b *(main+318)
+    b *(main+330)
+    b *(main+342)
     continue
 ''')
 
