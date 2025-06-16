@@ -10,7 +10,7 @@ p = gdb.debug(['./ld-linux-x86-64.so.2', '--library-path', '.', './vuln'], '''
     b *(troll+127)
     b *(main+60)
     b *(main+90)
-    # continue
+    continue
 ''')
 
 # p = remote('kashictf.iitbhucybersec.in', 54468)
