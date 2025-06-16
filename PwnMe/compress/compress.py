@@ -9,20 +9,18 @@ environ = {
     'LD_LIBRARY_PATH': os.path.join(os.getcwd(), './')
 }
 
-gs='''
-b *main+83
-b *menu+435
-b *menu+601
-b *menu+652
-b *menu+673
-b *menu+698
-b *menu+719
-b *menu+729
-b *menu+919
-continue
-'''
-
-p = gdb.debug('./compresse_patched', env=environ, gdbscript=gs)
+p = gdb.debug('./compresse_patched', env=environ, gdbscript='''
+    b *main+83
+    b *menu+435
+    b *menu+601
+    b *menu+652
+    b *menu+673
+    b *menu+698
+    b *menu+719
+    b *menu+729
+    b *menu+919
+    continue
+''')
 
 def flate_string(content):
     p.sendlineafter(b"choice:", b"1")
