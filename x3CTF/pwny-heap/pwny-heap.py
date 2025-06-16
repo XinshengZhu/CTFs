@@ -4,11 +4,9 @@ context.arch = 'amd64'
 context.log_level = 'debug'
 context.terminal = ['tmux', 'splitw', '-h']
 
-gs='''
-continue
-'''
-
-p = gdb.debug('./pwny-heap_patched', gdbscript=gs)
+p = gdb.debug('./pwny-heap_patched', gdbscript='''
+    continue
+''')
 
 def malloc(index, size):
     p.sendlineafter(b"> ", b"1")
