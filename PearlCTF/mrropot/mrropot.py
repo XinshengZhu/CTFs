@@ -9,11 +9,9 @@ environ = {
     'LD_LIBRARY_PATH': os.path.join(os.getcwd(), './')
 }
 
-gs='''
-continue
-'''
-
-p = gdb.debug('./chall_patched', env=environ, gdbscript=gs)
+p = gdb.debug('./chall_patched', env=environ, gdbscript='''
+    continue
+''')
 
 # p = remote('mr---ropot.ctf.pearlctf.in', 30009)
 

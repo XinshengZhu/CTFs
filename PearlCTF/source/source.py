@@ -4,12 +4,12 @@ context.arch = 'amd64'
 context.log_level = 'debug'
 context.terminal = ['tmux', 'splitw', '-h']
 
-# p = gdb.debug('./main', '''
-#               b *main+358
-#               continue
-# ''')
+p = gdb.debug('./main', '''
+    b *main+358
+    continue
+''')
 
-p = remote('readme-please.ctf.pearlctf.in', 30039)
+# p = remote('readme-please.ctf.pearlctf.in', 30039)
 
 p.sendlineafter(b'Enter the file name: ', b'files/flag.txt')
 p.recvuntil(b'Enter password: ')
