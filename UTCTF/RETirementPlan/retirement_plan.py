@@ -9,13 +9,11 @@ environ = {
     'LD_LIBRARY_PATH': os.path.join(os.getcwd(), './')
 }
 
-gs='''
-b *main+33
-b *main+270
-continue
-'''
-
-p = gdb.debug('./shellcode_patched', env=environ, gdbscript=gs)
+p = gdb.debug('./shellcode_patched', env=environ, gdbscript='''
+    b *main+33
+    b *main+270
+    continue
+''')
 
 # p = remote('challenge.utctf.live', 9009)
 
