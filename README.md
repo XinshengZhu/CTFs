@@ -1,13 +1,13 @@
-# CTFs: always PWN
+# CTFs: always PWN, sometimes REV
 
 **_I'm currently playing CTFs as [4n74r3s](https://ctftime.org/user/212881) with [NYUSEC](https://ctftime.org/team/439)!!!_**
 
-## CTF Competitions
+## PWN Challenges
 
 ### 1753CTF
 | Challenge | Solution | Special Technique |
 |-----------|----------|-------------------|
-| Leakcan | Stack Canary Leak followed by Buffer Overflow | N/A |
+| [Leakcan](./1753CTF/Leakcan/) | Stack Canary Leak followed by Buffer Overflow | N/A |
 
 ### b01lersCTF
 | Challenge | Solution | Special Technique |
@@ -21,7 +21,7 @@
 ### DawgCTF
 | Challenge | Solution | Special Technique |
 |-----------|----------|-------------------|
-| clobber | N/A | [ret2gets](https://sashactf.gitbook.io/pwn-notes/pwn/rop-2.34+/ret2gets) |
+| [clobber](./DawgCTF/clobber/) | N/A | [ret2gets](https://sashactf.gitbook.io/pwn-notes/pwn/rop-2.34+/ret2gets) |
 
 ### GPNCTF
 | Challenge | Solution | Special Technique |
