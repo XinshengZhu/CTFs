@@ -54,7 +54,7 @@
 ### NahamCon
 | Challenge | Key Technique |
 |-----------|---------------|
-| LostMemory | |
+| [LostMemory](./NahamCon/LostMemory/) | Tcache Poisoning |
 
 ### Nullcon
 | Challenge | Key Technique |
