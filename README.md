@@ -59,8 +59,8 @@
 ### Nullcon
 | Challenge | Key Technique |
 |-----------|---------------|
-| hateful | |
-| hateful2 | |
+| [hateful](./Nullcon/hateful/) | Format String Exploit for Leaks followed by ROP|
+| [hateful2](./Nullcon/hateful2/) | Tcache Poisoning to Stack followed by ROP |
 
 ### PearlCTF
 | Challenge | Key Technique |
