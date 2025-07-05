@@ -130,8 +130,8 @@
 ### WolvCTF
 | Challenge | Key Technique |
 |-----------|---------------|
-| DryWall | |
-| TakeNote | |
+| [DryWall](./WolvCTF/DryWall/) | ROP to Open/Read/Write |
+| [TakeNote](./WolvCTF/TakeNote/) | [Format String Exploit](https://firmianay.gitbooks.io/ctf-all-in-one/content/doc/3.1.1_format_string.html) for Leaks and GOT Table Overwrite |
 
 ### x3CTF
 | Challenge | Key Technique |
