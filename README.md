@@ -39,8 +39,8 @@
 ### KashiCTF
 | Challenge | Key Technique |
 |-----------|---------------|
-| leap_of_faith | |
-| the_troll_zone | |
+| [leap_of_faith](./KashiCTF/leap_of_faith/) | Manipulate Stack Pointer by User-controlled Jumps |
+| [the_troll_zone](./KashiCTF/the_troll_zone/) | Format String Exploit for Leak followed by ROP |
 
 ### LACTF
 | Challenge | Key Technique |
