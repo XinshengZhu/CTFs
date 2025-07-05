@@ -124,8 +124,8 @@
 ### UTCTF
 | Challenge | Key Technique |
 |-----------|---------------|
-| RETirementPlan | |
-| secbof | |
+| [RETirementPlan](./UTCTF/RETirementPlan/) | Format String Exploit for Leak followed by ROP |
+| [secbof](./UTCTF/secbof/) | ROP to Open/Read/Write |
 
 ### WolvCTF
 | Challenge | Key Technique |
