@@ -103,14 +103,14 @@
 ### TexSAW
 | Challenge | Key Technique |
 |-----------|---------------|
-| ez_printf | |
-| ez_rop | |
+| [ez_printf](./TexSAW/ez_printf/) |  |
+| [ez_rop](./TexSAW/ez_rop/) |  |
 
 ### TRXCTF
 | Challenge | Key Technique |
 |-----------|---------------|
-| canon_event | |
-| virtual_insanity | |
+| [canon_event](./TRXCTF/canon_event/) | Shellcode Injection with fork&ptrace&wait4 |
+| [virtual_insanity](./TRXCTF/virtual_insanity/) | Gadgets in vsyscalls Area |
 
 ### UMDCTF
 | Challenge | Key Technique |
@@ -130,7 +130,7 @@
 ### WolvCTF
 | Challenge | Key Technique |
 |-----------|---------------|
-| [DryWall](./WolvCTF/DryWall/) | ROP to Open/Read/Write |
+| [DryWall](./WolvCTF/DryWall/) | ROP to open&read&write |
 | [TakeNote](./WolvCTF/TakeNote/) | [Format String Exploit](https://firmianay.gitbooks.io/ctf-all-in-one/content/doc/3.1.1_format_string.html) for Leaks and GOT Table Overwrite |
 
 ### x3CTF
