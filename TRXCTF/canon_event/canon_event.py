@@ -25,6 +25,8 @@ p = gdb.debug('./chall', '''
 #  0006: 0x06 0x00 0x00 0x7fff0000  return ALLOW
 #  0007: 0x06 0x00 0x00 0x80000000  return KILL_PROCESS
 
+# effectively change rip just before a syscall is executed and before seccomp filter is applied to a non canonical address, which will execute syscall correctly but leave a fake, non canonical rip bypassing seccomp filter
+
 SYS_OPEN = 2
 SYS_SENDFILE = 40
 SYS_FORK = 57
