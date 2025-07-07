@@ -21,13 +21,13 @@
 ### DawgCTF
 | Challenge | Key Technique |
 |-----------|---------------|
-| [clobber](./DawgCTF/clobber/) | [ret2gets](https://sashactf.gitbook.io/pwn-notes/pwn/rop-2.34+/ret2gets) |
+| [clobber](./DawgCTF/clobber/) | Typical [ret2gets](https://sashactf.gitbook.io/pwn-notes/pwn/rop-2.34+/ret2gets) |
 
 ### GPNCTF
 | Challenge | Key Technique |
 |-----------|---------------|
-| nasa | |
-| note-editor | |
+| [nasa](./GPNCTF/nasa/) | Return Address Overwrite with AddressSanitizer on |
+| [note-editor](./GPNCTF/note-editor/) | Integer Overflow followed by Buffer Overflow|
 
 ### JerseyCTFV
 | Challenge | Key Technique |
@@ -65,9 +65,8 @@
 ### PearlCTF
 | Challenge | Key Technique |
 |-----------|---------------|
-| mrropot | |
-| source | |
-| treasurehunt | |
+| [mrropot](./PearlCTF/mrropot/) | Format String Exploit for Leaks followed by ROP |
+| [source](./PearlCTF/source/) | Buffer Overflow to Pass strcmp |
 
 ### PwnMe
 | Challenge | Key Technique |
@@ -78,8 +77,8 @@
 ### SDCTF
 | Challenge | Key Technique |
 |-----------|---------------|
-| Gutenberg | |
-| Shellphone | |
+| [Gutenberg](./SDCTF/Gutenberg/) | Format String Exploit for GOT Table Overwrite |
+| [Shellphone](./SDCTF/Shellphone/) | Shellcode Injection with execve |
 
 ### smileyCTF
 | Challenge | Key Technique |
@@ -103,8 +102,8 @@
 ### TexSAW
 | Challenge | Key Technique |
 |-----------|---------------|
-| [ez_printf](./TexSAW/ez_printf/) |  |
-| [ez_rop](./TexSAW/ez_rop/) |  |
+| [ez_printf](./TexSAW/ez_printf/) | Format String Exploit for Leaks and Return Address Overwrite |
+| [ez_rop](./TexSAW/ez_rop/) | ROP with Special Gadgets to Control Stack Pointer to Leak |
 
 ### TRXCTF
 | Challenge | Key Technique |
@@ -125,13 +124,13 @@
 | Challenge | Key Technique |
 |-----------|---------------|
 | [RETirementPlan](./UTCTF/RETirementPlan/) | Format String Exploit for Leak followed by ROP |
-| [secbof](./UTCTF/secbof/) | ROP to Open/Read/Write |
+| [secbof](./UTCTF/secbof/) | ROP to open&read&write |
 
 ### WolvCTF
 | Challenge | Key Technique |
 |-----------|---------------|
 | [DryWall](./WolvCTF/DryWall/) | ROP to open&read&write |
-| [TakeNote](./WolvCTF/TakeNote/) | [Format String Exploit](https://firmianay.gitbooks.io/ctf-all-in-one/content/doc/3.1.1_format_string.html) for Leaks and GOT Table Overwrite |
+| [TakeNote](./WolvCTF/TakeNote/) | Format String Exploit for Leaks and GOT Table Overwrite |
 
 ### x3CTF
 | Challenge | Key Technique |
