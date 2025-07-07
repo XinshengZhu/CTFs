@@ -1,6 +1,16 @@
 from pwn import *
 
-p = process('./algo')
+context.arch = 'amd64'
+context.log_level = 'debug'
+context.terminal = ['tmux', 'splitw', '-h']
+
+p = gdb.debug('./algo', '''
+    b *(menu+185)
+    b *(menu+200)
+    b *(menu+215)
+    b *(menu+230)
+    continue
+''')
 
 # p = remote('challenge.ctf.games', 30241)
 
