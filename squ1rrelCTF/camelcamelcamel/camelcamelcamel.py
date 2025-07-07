@@ -2,7 +2,6 @@ import os
 from pwn import *
 import time
 
-context.arch = 'amd64'
 context.terminal = ['tmux', 'splitw', '-h']
 prefix = "squ1rrel{"
 suffix = "}"
