@@ -89,8 +89,8 @@
 ### squ1rrelCTF
 | Challenge | Key Technique |
 |-----------|---------------|
-| jail | |
-| squ1rrel-casino | |
+| [jail](./squ1rrelCTF/jail/) | Stack Pivot with leave/ret Instructions Twice |
+| [squ1rrel-casino](./squ1rrelCTF/squ1rrel-casino/) | Integer Overflow for GOT Table Overwrite |
 
 ### TAMUctf
 | Challenge | Key Technique |
