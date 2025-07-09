@@ -4,6 +4,38 @@ import time
 
 context.arch = 'amd64'
 context.terminal = ['tmux', 'splitw', '-h']
+
+script_content = """
+# Initialize counter
+set $count = 0
+
+# Set breakpoint at the line you want to count
+# Replace 'filename.c:123' with your actual file and line number
+b *('camlStdlib__List.equal_875'+84)
+
+# Define a command to run when breakpoint is hit
+commands
+    set $count = $count + 1
+    continue
+end
+
+# Run the program
+continue
+
+# Set up logging
+set logging file gdb_output.txt
+set logging enabled on
+
+# Print the count when program exits
+printf "Line was hit %d times\n", $count 
+
+# Turn off logging
+set logging enabled off
+"""
+
+with open("count_hits.gdb", "w") as f:
+    f.write(script_content)
+
 prefix = "squ1rrel{"
 suffix = "}"
 
