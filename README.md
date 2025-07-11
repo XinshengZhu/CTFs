@@ -71,8 +71,8 @@
 ### PwnMe
 | Challenge | Key Technique |
 |-----------|---------------|
-| compress | |
-| got | |
+| [compress](./PwnMe/compress/) | [Unsafe Unlink](https://github.com/shellphish/how2heap/blob/master/glibc_2.35/unsafe_unlink.c) followed by [_exit_handlers Abuse](https://ctftime.org/writeup/34804) |
+| [got](./PwnMe/got/) | Integer Overflow for GOT Table Overwrite |
 
 ### SDCTF
 | Challenge | Key Technique |
