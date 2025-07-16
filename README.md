@@ -21,7 +21,7 @@
 ### DawgCTF
 | Challenge | Key Technique |
 |-----------|---------------|
-| [clobber](./DawgCTF/clobber/) | Typical [ret2gets](https://sashactf.gitbook.io/pwn-notes/pwn/rop-2.34+/ret2gets) |
+| [clobber](./DawgCTF/clobber/) | [ret2gets](https://sashactf.gitbook.io/pwn-notes/pwn/rop-2.34+/ret2gets) |
 
 ### GPNCTF
 | Challenge | Key Technique |
@@ -32,9 +32,9 @@
 ### JerseyCTFV
 | Challenge | Key Technique |
 |-----------|---------------|
-| FantaxoticFledgling | |
-| Mallorcy | |
-| RokosJerseyLottery | |
+| [FantaxoticFledgling](./JerseyCTFV/FantaxoticFledgling/) | Replicate PRNG srand(time(NULL)) followed by Stack Overflow |
+| [Mallorcy](./JerseyCTFV/Mallorcy/) | Format String Exploit for Leaks and GOT Table Overwrite |
+| [RokosJerseyLottery](./JerseyCTFV/RokosJerseyLottery/) | Z3 Solver Utilize and Tcache Poisoning followed by [_exit_handlers Abuse](https://ctftime.org/writeup/34804) |
 
 ### KashiCTF
 | Challenge | Key Technique |
@@ -83,8 +83,8 @@
 ### smileyCTF
 | Challenge | Key Technique |
 |-----------|---------------|
-| babyrop | |
-| limit | |
+| [babyrop](./smileyCTF/babyrop/) |  |
+| [limit](./smileyCTF/limit/) |  |
 
 ### squ1rrelCTF
 | Challenge | Key Technique |
@@ -95,9 +95,9 @@
 ### TAMUctf
 | Challenge | Key Technique |
 |-----------|---------------|
-| debug-1 | |
-| seven | |
-| sniper | |
+| [debug-1](./TAMUctf/debug-1/) |  |
+| [seven](./TAMUctf/seven/) |  |
+| [sniper](./TAMUctf/sniper/) |  |
 
 ### TexSAW
 | Challenge | Key Technique |
