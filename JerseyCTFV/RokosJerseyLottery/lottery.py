@@ -57,7 +57,7 @@ def pointer_guard_encrypt(decrypted: int, pointer_guard: int):
 
 # attempt_ticket: malloc a chunks with a specific size
 # burn_used_tickets (based on whether to sign tickets): free all chunks in order from oldest malloced chunk to newest malloced chunk; if signature is chosen to be signed to a ticket, a string starting from address of chunk will leak
-# scratch_ticket (based on results from RNG): for first and second time calling this function, five values (-0x10, -8, 0, 8, 0x10) among address of newest malloced chunk can leak, which is called "jackpot"; for third and fourth time calling this function, 0x80 bytes from address of newest malloced chunk can be overwritten, which is called "trip"
+# scratch_ticket (based on results from PRNG): for first and second time calling this function, five values (-0x10, -8, 0, 8, 0x10) among address of newest malloced chunk can leak, which is called "jackpot"; for third and fourth time calling this function, 0x80 bytes from address of newest malloced chunk can be overwritten, which is called "trip"
 # give_up: exit program
 
 # Stage 1: get glibc base address, calculate tls base address, and set up provided seed for RNG
