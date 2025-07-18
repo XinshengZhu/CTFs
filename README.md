@@ -95,9 +95,9 @@
 ### TAMUctf
 | Challenge | Key Technique |
 |-----------|---------------|
-| [debug-1](./TAMUctf/debug-1/) |  |
-| [seven](./TAMUctf/seven/) |  |
-| [sniper](./TAMUctf/sniper/) |  |
+| [debug-1](./TAMUctf/debug-1/) | Stack Overflow followed by ROP |
+| [seven](./TAMUctf/seven/) | ROP with Special Gadgets for Shellcode Injection |
+| [sniper](./TAMUctf/sniper/) | Format String Exploit without Dollar Sign (no_dollars) |
 
 ### TexSAW
 | Challenge | Key Technique |
