@@ -27,14 +27,14 @@
 | Challenge | Key Technique |
 |-----------|---------------|
 | [nasa](./GPNCTF/nasa/) | Return Address Overwrite with AddressSanitizer on |
-| [note-editor](./GPNCTF/note-editor/) | Integer Overflow followed by Buffer Overflow|
+| [note-editor](./GPNCTF/note-editor/) | Integer Overflow followed by Buffer Overflow |
 
 ### JerseyCTFV
 | Challenge | Key Technique |
 |-----------|---------------|
-| [FantaxoticFledgling](./JerseyCTFV/FantaxoticFledgling/) | Replicate PRNG srand(time(NULL)) followed by Stack Overflow |
+| [FantaxoticFledgling](./JerseyCTFV/FantaxoticFledgling/) | Replicate PRNG srand(time(NULL)) followed by Buffer Overflow |
 | [Mallorcy](./JerseyCTFV/Mallorcy/) | Format String Exploit for Leaks and GOT Table Overwrite |
-| [RokosJerseyLottery](./JerseyCTFV/RokosJerseyLottery/) | Z3 Solver Utilize and Tcache Poisoning followed by [_exit_handlers Abuse](https://ctftime.org/writeup/34804) |
+| [RokosJerseyLottery](./JerseyCTFV/RokosJerseyLottery/) | Z3 Solver Utilize and Tcache Poisoning for [_exit_handlers Abuse](https://ctftime.org/writeup/34804) |
 
 ### KashiCTF
 | Challenge | Key Technique |
@@ -45,22 +45,22 @@
 ### LACTF
 | Challenge | Key Technique |
 |-----------|---------------|
-| 2password | |
-| gamedev | |
-| library | |
-| minceraft | |
-| state-change | |
+| [2password](./LACTF/2password/) | Format String Exploit for Leak |
+| [gamedev](./LACTF/gamedev/) | Heap Buffer Overflow for Arbitrary Read and Write |
+| [library](./LACTF/library/) | [Unsafe Unlink](https://github.com/shellphish/how2heap/blob/master/glibc_2.35/unsafe_unlink.c) and [House of Enherjar](https://github.com/shellphish/how2heap/blob/master/glibc_2.35/house_of_einherjar.c) followed by Tcache Poisoning for [FSOP](https://niftic.ca/posts/fsop/) |
+| [minceraft](./LACTF/minceraft/) | ROP with Special Gadgets for Leak and Shell |
+| [state-change](./LACTF/state-change/) | Stack Pivot to bss Section |
 
 ### NahamCon
 | Challenge | Key Technique |
 |-----------|---------------|
-| [LostMemory](./NahamCon/LostMemory/) | Tcache Poisoning to Stack followed by ROP |
+| [LostMemory](./NahamCon/LostMemory/) | Tcache Poisoning to Stack for ROP |
 
 ### Nullcon
 | Challenge | Key Technique |
 |-----------|---------------|
 | [hateful](./Nullcon/hateful/) | Format String Exploit for Leaks followed by ROP|
-| [hateful2](./Nullcon/hateful2/) | Tcache Poisoning to Stack followed by ROP |
+| [hateful2](./Nullcon/hateful2/) | Tcache Poisoning to Stack for ROP |
 
 ### PearlCTF
 | Challenge | Key Technique |
@@ -71,7 +71,7 @@
 ### PwnMe
 | Challenge | Key Technique |
 |-----------|---------------|
-| [compress](./PwnMe/compress/) | [Unsafe Unlink](https://github.com/shellphish/how2heap/blob/master/glibc_2.35/unsafe_unlink.c) followed by [_exit_handlers Abuse](https://ctftime.org/writeup/34804) |
+| [compress](./PwnMe/compress/) | [Unsafe Unlink](https://github.com/shellphish/how2heap/blob/master/glibc_2.35/unsafe_unlink.c) for [_exit_handlers Abuse](https://ctftime.org/writeup/34804) |
 | [got](./PwnMe/got/) | Integer Overflow for GOT Table Overwrite |
 
 ### SDCTF
@@ -135,4 +135,4 @@
 ### x3CTF
 | Challenge | Key Technique |
 |-----------|---------------|
-| [pwny-heap](./x3CTF/pwny-heap/) | Tcache Poisoning followed by [FSOP](https://niftic.ca/posts/fsop/) |
+| [pwny-heap](./x3CTF/pwny-heap/) | Tcache Poisoning for [FSOP](https://niftic.ca/posts/fsop/) |
