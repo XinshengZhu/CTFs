@@ -7,16 +7,16 @@
 ### 1753CTF
 | Challenge | Key Technique |
 |-----------|---------------|
-| [Leakcan](./1753CTF/Leakcan/) | Stack Canary Leak followed by Stack Buffer Overflow |
+| [Leakcan](./1753CTF/Leakcan/) | Stack Canary Leak followed by Return Address Overwrite |
 
 ### b01lersCTF
 | Challenge | Key Technique |
 |-----------|---------------|
-| Gadget_Freak | |
-| gueswhosstack | |
-| scanfun | |
-| trolley-problem | |
-| where | |
+| [Gadget_Freak](./b01lersCTF/Gadget_Freak/) | Ingenious Gadgets for Stack Pivot |
+| [gueswhosstack](./b01lersCTF/gueswhosstack/) | Format String Exploit for Leak followed by [Libc GOT Hijacking](https://github.com/n132/Libc-GOT-Hijacking) |
+| [scanfun](./b01lersCTF/scanfun/) | Format String Exploit with scanf for [Leak using STDOUT as Read Primitive](https://github.com/nobodyisnobody/docs/tree/main/using.stdout.as.a.read.primitive) and [FSOP](https://niftic.ca/posts/fsop/) |
+| [trolley-problem](./b01lersCTF/trolley-problem/) | Stack Canary Brute-Force followed by Return Address Overwrite |
+| [where](./b01lersCTF/where/) | Shellcode Injection with NX Disabled |
 
 ### DawgCTF
 | Challenge | Key Technique |
@@ -109,16 +109,16 @@
 | Challenge | Key Technique |
 |-----------|---------------|
 | [canon_event](./TRXCTF/canon_event/) | Shellcode Injection with fork&ptrace&wait4 |
-| [virtual_insanity](./TRXCTF/virtual_insanity/) | Gadgets in vsyscalls Area |
+| [virtual_insanity](./TRXCTF/virtual_insanity/) | ROP with Gadgets in vsyscalls Area |
 
 ### UMDCTF
 | Challenge | Key Technique |
 |-----------|---------------|
-| aura | |
-| gambling2 | |
-| one-write | |
-| prison-realm | |
-| unfinished | |
+| [aura](./UMDCTF/aura/) |  |
+| [gambling2](./UMDCTF/gambling2/) |  |
+| [one-write](./UMDCTF/one-write/) |  |
+| [prison-realm](./UMDCTF/prison-realm/) |  |
+| [unfinished](./UMDCTF/unfinished/) |  |
 
 ### UTCTF
 | Challenge | Key Technique |
