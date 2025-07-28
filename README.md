@@ -111,6 +111,12 @@
 | [canon_event](./TRXCTF/canon_event/) | Shellcode Injection with fork&ptrace&wait4 |
 | [virtual_insanity](./TRXCTF/virtual_insanity/) | ROP with Gadgets in vsyscalls Area |
 
+### UIUCTF
+| Challenge | Key Technique |
+|-----------|---------------|
+| [qas](./UIUCTF/qas/) | int to short Buffer Overflow |
+| [doremi](./UIUCTF/doremi/) | Tcache-posioning-like Attack within [mimalloc](https://github.com/microsoft/mimalloc) Allocator |
+
 ### UMDCTF
 | Challenge | Key Technique |
 |-----------|---------------|
