@@ -21,7 +21,7 @@
 ### DawgCTF
 | Challenge | Key Technique |
 |-----------|---------------|
-| [clobber](./DawgCTF/clobber/) | [ret2gets](https://sashactf.gitbook.io/pwn-notes/pwn/rop-2.34+/ret2gets) |
+| [clobber](./DawgCTF/clobber/) | [ret2gets](https://sashactf.gitbook.io/pwn-notes/pwn/rop-2.34+/ret2gets) followed by ROP |
 
 ### GPNCTF
 | Challenge | Key Technique |
@@ -48,7 +48,7 @@
 | [2password](./LACTF/2password/) | Format String Exploit for Leak |
 | [gamedev](./LACTF/gamedev/) | Heap Buffer Overflow for Arbitrary Read and Write |
 | [library](./LACTF/library/) | [Unsafe Unlink](https://github.com/shellphish/how2heap/blob/master/glibc_2.35/unsafe_unlink.c) and [House of Enherjar](https://github.com/shellphish/how2heap/blob/master/glibc_2.35/house_of_einherjar.c) followed by Tcache Poisoning for [FSOP](https://niftic.ca/posts/fsop/) |
-| [minceraft](./LACTF/minceraft/) | ROP with Special Gadgets for Leak and Shell |
+| [minceraft](./LACTF/minceraft/) | ROP with Multiple Gadgets for Leak and Shell |
 | [state-change](./LACTF/state-change/) | Stack Pivot to bss Section |
 
 ### NahamCon
@@ -83,8 +83,8 @@
 ### smileyCTF
 | Challenge | Key Technique |
 |-----------|---------------|
-| [babyrop](./smileyCTF/babyrop/) |  |
-| [limit](./smileyCTF/limit/) |  |
+| [babyrop](./smileyCTF/babyrop/) | ROP with Special Gadgets for to Change data Section Entry |
+| [limit](./smileyCTF/limit/) | [House of Enherjar](https://github.com/shellphish/how2heap/blob/master/glibc_2.35/house_of_einherjar.c) for Leaks by Free in Post Tcache Poisoning Stage and Tcache Poisoning to [FSOP](https://niftic.ca/posts/fsop/) |
 
 ### squ1rrelCTF
 | Challenge | Key Technique |
@@ -103,7 +103,7 @@
 | Challenge | Key Technique |
 |-----------|---------------|
 | [ez_printf](./TexSAW/ez_printf/) | Format String Exploit for Leaks and Return Address Overwrite |
-| [ez_rop](./TexSAW/ez_rop/) | ROP with Special Gadgets to Control Stack Pointer to Leak |
+| [ez_rop](./TexSAW/ez_rop/) | ROP with Multiple Gadgets to Control Stack Pointer to Leak |
 
 ### TRXCTF
 | Challenge | Key Technique |
@@ -114,11 +114,11 @@
 ### UMDCTF
 | Challenge | Key Technique |
 |-----------|---------------|
-| [aura](./UMDCTF/aura/) |  |
-| [gambling2](./UMDCTF/gambling2/) |  |
-| [one-write](./UMDCTF/one-write/) |  |
-| [prison-realm](./UMDCTF/prison-realm/) |  |
-| [unfinished](./UMDCTF/unfinished/) |  |
+| [aura](./UMDCTF/aura/) | File Structure Arbitrary Write |
+| [gambling2](./UMDCTF/gambling2/) | Return Address Overwrite in 32-bit Program |
+| [one-write](./UMDCTF/one-write/) | Free in Post Tcache Poisoning Stage for Leaks and [Unsafe Unlink](https://github.com/shellphish/how2heap/blob/master/glibc_2.35/unsafe_unlink.c) for GOT Table Overwrite |
+| [prison-realm](./UMDCTF/prison-realm/) | ROP with fgets and Special Gadgets to Change GOT Table Entry |
+| [unfinished](./UMDCTF/unfinished/) | bss Section Overflow |
 
 ### UTCTF
 | Challenge | Key Technique |
