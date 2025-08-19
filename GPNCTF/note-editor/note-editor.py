@@ -26,7 +26,6 @@ def edit_note(offset, size, note):
 def quit():
     p.sendlineafter(b"6. Quit\n", b'6')
 
-
 # 1. all used fgets function in this challenge is self-written, n-2 bytes can be read at most with a size of n as second argument
 # 2. there is a integer overflow vulnerability in edit function (overwrite bytes count is int64_t and note->pos is uint32_t), which can be used to overwrite return address in main function
 # 3. following instructions in edit function requires that within edit function, QWORD PTR [QWORD PTR [rbp-0x48]] has to be a valid address, which is used as first argument of strcspn function
