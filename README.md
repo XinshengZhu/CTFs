@@ -36,6 +36,13 @@
 | [Mallorcy](./JerseyCTFV/Mallorcy/) | Format String Exploit for Leaks and GOT Table Overwrite |
 | [RokosJerseyLottery](./JerseyCTFV/RokosJerseyLottery/) | Z3 Solver Utilize and Tcache Poisoning for [_exit_handlers Abuse](https://ctftime.org/writeup/34804) |
 
+### justCTF
+| Challenge | Key Technique |
+|-----------|---------------|
+| [babyheap](./justCTF/babyheap/) | Tcache Poisoning to Heap to Fake Chunk Size for Leaks followed by Tcache Poisoning to Stack for ROP |
+| [prospector](./justCTF/prospector/) | Stack Buffer Overflow to Fail Read Syscall to Produce Brute-Force followed by ROP with gadgets in ld |
+| [shellcode_printer](./justCTF/shellcode_printer/) | Format String Exploit for Memory-mapped Region Overwrite |
+
 ### KashiCTF
 | Challenge | Key Technique |
 |-----------|---------------|
