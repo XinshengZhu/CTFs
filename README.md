@@ -29,6 +29,12 @@
 | [nasa](./GPNCTF/nasa/) | Return Address Overwrite with AddressSanitizer on |
 | [note-editor](./GPNCTF/note-editor/) | Integer Overflow followed by Buffer Overflow |
 
+### idekCTF
+| Challenge | Key Technique |
+|-----------|---------------|
+| [little-rop](./idekCTF/little-rop/) | ROP with Special Gadgets for Multiple Times of Stack Pivoting to Change GOT Table Entry |
+| [myspace2](./idekCTF/myspace2/) | Integer Overflow for Stack Canary Leak followed by Return Address Overwrite |
+
 ### JerseyCTFV
 | Challenge | Key Technique |
 |-----------|---------------|
@@ -40,7 +46,7 @@
 | Challenge | Key Technique |
 |-----------|---------------|
 | [babyheap](./justCTF/babyheap/) | Tcache Poisoning to Heap to Fake Chunk Size for Leaks followed by Tcache Poisoning to Stack for ROP |
-| [prospector](./justCTF/prospector/) | Stack Buffer Overflow to Fail Read Syscall to Produce Brute-Force followed by ROP with gadgets in ld |
+| [prospector](./justCTF/prospector/) | Stack Buffer Overflow to Fail Read Syscall to Produce Brute-Force followed by ROP with Gadgets in ld |
 | [shellcode_printer](./justCTF/shellcode_printer/) | Format String Exploit for Memory-mapped Region Overwrite |
 
 ### KashiCTF
