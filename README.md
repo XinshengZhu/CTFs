@@ -1,6 +1,6 @@
 # CTFs: always PWN, sometimes REV
 
-**_I'm currently playing CTFs as [4n74r3s](https://ctftime.org/user/212881) with [NYUSEC](https://ctftime.org/team/439)!!!_**
+**_I'm currently playing CTFs as [4n74r3s](https://ctftime.org/user/212881) with [NYUSEC](https://ctftime.org/team/439), [L3ak](https://ctftime.org/team/220336), and [Lil L3ak](https://ctftime.org/team/373171)!_**
 
 ## PWN Challenges
 
@@ -12,7 +12,7 @@
 ### b01lersCTF
 | Challenge | Key Technique |
 |-----------|---------------|
-| [Gadget_Freak](./b01lersCTF/Gadget_Freak/) | Ingenious Gadgets for Stack Pivot |
+| [Gadget_Freak](./b01lersCTF/Gadget_Freak/) | Ingenious Gadgets for Stack Pivoting |
 | [gueswhosstack](./b01lersCTF/gueswhosstack/) | Format String Exploit for Leak followed by [Libc GOT Hijacking](https://github.com/n132/Libc-GOT-Hijacking) |
 | [scanfun](./b01lersCTF/scanfun/) | Format String Exploit with scanf for [Leak using STDOUT as Read Primitive](https://github.com/nobodyisnobody/docs/tree/main/using.stdout.as.a.read.primitive) and [FSOP](https://niftic.ca/posts/fsop/) |
 | [trolley-problem](./b01lersCTF/trolley-problem/) | Stack Canary Brute-Force followed by Return Address Overwrite |
@@ -38,15 +38,15 @@
 ### JerseyCTFV
 | Challenge | Key Technique |
 |-----------|---------------|
-| [FantaxoticFledgling](./JerseyCTFV/FantaxoticFledgling/) | Replicate PRNG srand(time(NULL)) followed by Buffer Overflow |
+| [FantaxoticFledgling](./JerseyCTFV/FantaxoticFledgling/) | Replicate PRNG `srand(time(NULL))` followed by Buffer Overflow |
 | [Mallorcy](./JerseyCTFV/Mallorcy/) | Format String Exploit for Leaks and GOT Table Overwrite |
-| [RokosJerseyLottery](./JerseyCTFV/RokosJerseyLottery/) | Z3 Solver Utilize and Tcache Poisoning for [_exit_handlers Abuse](https://ctftime.org/writeup/34804) |
+| [RokosJerseyLottery](./JerseyCTFV/RokosJerseyLottery/) | `z3-solver` Utilize and Tcache Poisoning for [_exit_handlers Abuse](https://ctftime.org/writeup/34804) |
 
 ### justCTF
 | Challenge | Key Technique |
 |-----------|---------------|
 | [babyheap](./justCTF/babyheap/) | Tcache Poisoning to Heap to Fake Chunk Size for Leaks followed by Tcache Poisoning to Stack for ROP |
-| [prospector](./justCTF/prospector/) | Stack Buffer Overflow to Fail Read Syscall to Produce Brute-Force followed by ROP with Gadgets in ld |
+| [prospector](./justCTF/prospector/) | Buffer Overflow to Fail Function Calls to Produce Brute-Force followed by ROP with Gadgets in `ld` |
 | [shellcode_printer](./justCTF/shellcode_printer/) | Format String Exploit for Memory-mapped Region Overwrite |
 
 ### KashiCTF
@@ -62,7 +62,7 @@
 | [gamedev](./LACTF/gamedev/) | Heap Buffer Overflow for Arbitrary Read and Write |
 | [library](./LACTF/library/) | [Unsafe Unlink](https://github.com/shellphish/how2heap/blob/master/glibc_2.35/unsafe_unlink.c) and [House of Enherjar](https://github.com/shellphish/how2heap/blob/master/glibc_2.35/house_of_einherjar.c) followed by Tcache Poisoning for [FSOP](https://niftic.ca/posts/fsop/) |
 | [minceraft](./LACTF/minceraft/) | ROP with Multiple Gadgets for Leak and Shell |
-| [state-change](./LACTF/state-change/) | Stack Pivot to bss Section |
+| [state-change](./LACTF/state-change/) | Stack Pivoting to bss Section |
 
 ### NahamCon
 | Challenge | Key Technique |
@@ -79,7 +79,7 @@
 | Challenge | Key Technique |
 |-----------|---------------|
 | [mrropot](./PearlCTF/mrropot/) | Format String Exploit for Leaks followed by ROP |
-| [source](./PearlCTF/source/) | Buffer Overflow to Pass strcmp |
+| [source](./PearlCTF/source/) | Buffer Overflow to Pass `strcmp` |
 
 ### PwnMe
 | Challenge | Key Technique |
@@ -91,18 +91,18 @@
 | Challenge | Key Technique |
 |-----------|---------------|
 | [Gutenberg](./SDCTF/Gutenberg/) | Format String Exploit for GOT Table Overwrite |
-| [Shellphone](./SDCTF/Shellphone/) | Shellcode Injection with execve |
+| [Shellphone](./SDCTF/Shellphone/) | Shellcode Injection using `execve` |
 
 ### smileyCTF
 | Challenge | Key Technique |
 |-----------|---------------|
-| [babyrop](./smileyCTF/babyrop/) | ROP with Special Gadgets for to Change data Section Entry |
-| [limit](./smileyCTF/limit/) | [House of Enherjar](https://github.com/shellphish/how2heap/blob/master/glibc_2.35/house_of_einherjar.c) for Leaks by Free in Post Tcache Poisoning Stage and Tcache Poisoning to [FSOP](https://niftic.ca/posts/fsop/) |
+| [babyrop](./smileyCTF/babyrop/) | ROP with Special Gadgets to Change data Section Entry |
+| [limit](./smileyCTF/limit/) | [House of Enherjar](https://github.com/shellphish/how2heap/blob/master/glibc_2.35/house_of_einherjar.c) to Free in Post Tcache Poisoning Stage for Leaks and Tcache Poisoning for [FSOP](https://niftic.ca/posts/fsop/) |
 
 ### squ1rrelCTF
 | Challenge | Key Technique |
 |-----------|---------------|
-| [jail](./squ1rrelCTF/jail/) | Stack Pivot with leave/ret Instructions Twice |
+| [jail](./squ1rrelCTF/jail/) | Stack Pivoting with `leave` Instruction Twice |
 | [squ1rrel-casino](./squ1rrelCTF/squ1rrel-casino/) | Integer Overflow for GOT Table Overwrite |
 
 ### TAMUctf
@@ -110,24 +110,24 @@
 |-----------|---------------|
 | [debug-1](./TAMUctf/debug-1/) | Stack Overflow followed by ROP |
 | [seven](./TAMUctf/seven/) | ROP with Special Gadgets for Shellcode Injection |
-| [sniper](./TAMUctf/sniper/) | Format String Exploit without Dollar Sign (no_dollars) |
+| [sniper](./TAMUctf/sniper/) | Format String Exploit without Dollar Sign |
 
 ### TexSAW
 | Challenge | Key Technique |
 |-----------|---------------|
 | [ez_printf](./TexSAW/ez_printf/) | Format String Exploit for Leaks and Return Address Overwrite |
-| [ez_rop](./TexSAW/ez_rop/) | ROP with Multiple Gadgets to Control Stack Pointer to Leak |
+| [ez_rop](./TexSAW/ez_rop/) | ROP with Multiple Gadgets for Leak and Shell |
 
 ### TRXCTF
 | Challenge | Key Technique |
 |-----------|---------------|
-| [canon_event](./TRXCTF/canon_event/) | Shellcode Injection with fork&ptrace&wait4 |
-| [virtual_insanity](./TRXCTF/virtual_insanity/) | ROP with Gadgets in vsyscalls Area |
+| [canon_event](./TRXCTF/canon_event/) | Shellcode Injection using `fork` & `ptrace` & `wait4` |
+| [virtual_insanity](./TRXCTF/virtual_insanity/) | ROP with Gadgets in `vsyscalls` Area |
 
 ### UIUCTF
 | Challenge | Key Technique |
 |-----------|---------------|
-| [qas](./UIUCTF/qas/) | int to short Buffer Overflow |
+| [qas](./UIUCTF/qas/) | `int` to `short` Buffer Overflow |
 | [doremi](./UIUCTF/doremi/) | Tcache-posioning-like Attack within [mimalloc](https://github.com/microsoft/mimalloc) Allocator |
 
 ### UMDCTF
@@ -135,20 +135,20 @@
 |-----------|---------------|
 | [aura](./UMDCTF/aura/) | File Structure Arbitrary Write |
 | [gambling2](./UMDCTF/gambling2/) | Return Address Overwrite in 32-bit Program |
-| [one-write](./UMDCTF/one-write/) | Free in Post Tcache Poisoning Stage for Leaks and [Unsafe Unlink](https://github.com/shellphish/how2heap/blob/master/glibc_2.35/unsafe_unlink.c) for GOT Table Overwrite |
-| [prison-realm](./UMDCTF/prison-realm/) | ROP with fgets and Special Gadgets to Change GOT Table Entry |
-| [unfinished](./UMDCTF/unfinished/) | bss Section Overflow |
+| [one-write](./UMDCTF/one-write/) | Free in Post Tcache Poisoning Stage for Leaks followed by [Unsafe Unlink](https://github.com/shellphish/how2heap/blob/master/glibc_2.35/unsafe_unlink.c) for GOT Table Overwrite |
+| [prison-realm](./UMDCTF/prison-realm/) | ROP with `fgets` and Special Gadgets to Change GOT Table Entry |
+| [unfinished](./UMDCTF/unfinished/) | `bss` Section Overflow |
 
 ### UTCTF
 | Challenge | Key Technique |
 |-----------|---------------|
 | [RETirementPlan](./UTCTF/RETirementPlan/) | Format String Exploit for Leak followed by ROP |
-| [secbof](./UTCTF/secbof/) | ROP to open&read&write |
+| [secbof](./UTCTF/secbof/) | ROP to `open` & `read` & `write` |
 
 ### WolvCTF
 | Challenge | Key Technique |
 |-----------|---------------|
-| [DryWall](./WolvCTF/DryWall/) | ROP to open&read&write |
+| [DryWall](./WolvCTF/DryWall/) | ROP to `open` & `read` & `write` |
 | [TakeNote](./WolvCTF/TakeNote/) | Format String Exploit for Leaks and GOT Table Overwrite |
 
 ### x3CTF
