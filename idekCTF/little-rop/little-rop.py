@@ -1,5 +1,5 @@
 from pwn import *
-from subprocess import getoutput
+# from subprocess import getoutput
 
 context.arch = 'amd64'
 context.log_level = 'debug'
