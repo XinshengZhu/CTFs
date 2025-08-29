@@ -18,6 +18,12 @@
 | [trolley-problem](./b01lersCTF/trolley-problem/) | Stack Canary Brute-Force followed by Return Address Overwrite |
 | [where](./b01lersCTF/where/) | Shellcode Injection with NX Disabled |
 
+### BrunnerCTF
+| Challenge | Key Technique |
+|-----------|---------------|
+| [obligatory-heap-pwn](./BrunnerCTF/obligatory-heap-pwn/) | Ingenious On-stack Data Leaks followed by Ingenious Return Address Overwrite |
+| [storage](./BrunnerCTF/recipe-storage/) | [House of Enherjar](https://github.com/shellphish/how2heap/blob/master/glibc_2.35/house_of_einherjar.c) followed by Tcache Poisoning for [_exit_handlers Abuse](https://ctftime.org/writeup/34804) |
+
 ### DawgCTF
 | Challenge | Key Technique |
 |-----------|---------------|
@@ -62,7 +68,7 @@
 | [gamedev](./LACTF/gamedev/) | Heap Buffer Overflow for Arbitrary Read and Write |
 | [library](./LACTF/library/) | [Unsafe Unlink](https://github.com/shellphish/how2heap/blob/master/glibc_2.35/unsafe_unlink.c) and [House of Enherjar](https://github.com/shellphish/how2heap/blob/master/glibc_2.35/house_of_einherjar.c) followed by Tcache Poisoning for [FSOP](https://niftic.ca/posts/fsop/) |
 | [minceraft](./LACTF/minceraft/) | ROP with Multiple Gadgets for Leak and Shell |
-| [state-change](./LACTF/state-change/) | Stack Pivoting to bss Section |
+| [state-change](./LACTF/state-change/) | Stack Pivoting to `.bss` Section |
 
 ### NahamCon
 | Challenge | Key Technique |
@@ -96,7 +102,7 @@
 ### smileyCTF
 | Challenge | Key Technique |
 |-----------|---------------|
-| [babyrop](./smileyCTF/babyrop/) | ROP with Special Gadgets to Change data Section Entry |
+| [babyrop](./smileyCTF/babyrop/) | ROP with Special Gadgets to Change `.data` Section Entry |
 | [limit](./smileyCTF/limit/) | [House of Enherjar](https://github.com/shellphish/how2heap/blob/master/glibc_2.35/house_of_einherjar.c) to Free in Post Tcache Poisoning Stage for Leaks and Tcache Poisoning for [FSOP](https://niftic.ca/posts/fsop/) |
 
 ### squ1rrelCTF
@@ -134,10 +140,10 @@
 | Challenge | Key Technique |
 |-----------|---------------|
 | [aura](./UMDCTF/aura/) | File Structure Arbitrary Write |
-| [gambling2](./UMDCTF/gambling2/) | Return Address Overwrite in 32-bit Program |
+| [gambling2](./UMDCTF/gambling2/) | Return Address Overwrite within Intel 80386 Architecture |
 | [one-write](./UMDCTF/one-write/) | Free in Post Tcache Poisoning Stage for Leaks followed by [Unsafe Unlink](https://github.com/shellphish/how2heap/blob/master/glibc_2.35/unsafe_unlink.c) for GOT Table Overwrite |
 | [prison-realm](./UMDCTF/prison-realm/) | ROP with `fgets` and Special Gadgets to Change GOT Table Entry |
-| [unfinished](./UMDCTF/unfinished/) | `bss` Section Overflow |
+| [unfinished](./UMDCTF/unfinished/) | `.bss` Section Overflow |
 
 ### UTCTF
 | Challenge | Key Technique |
