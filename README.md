@@ -93,6 +93,13 @@
 | [compress](./PwnMe/compress/) | [Unsafe Unlink](https://github.com/shellphish/how2heap/blob/master/glibc_2.35/unsafe_unlink.c) for [_exit_handlers Abuse](https://ctftime.org/writeup/34804) |
 | [got](./PwnMe/got/) | Integer Overflow for GOT Table Overwrite |
 
+### SekaiCTF
+| Challenge | Key Technique |
+|-----------|---------------|
+| [learning_oop](./SekaiCTF/learning_oop/) | Ingenious `glibc` Leak on Heap and Ingenious Gadgets in `glibc` to Hijack `vtable` pointer of C++ Object |
+| [outdated](./SekaiCTF/outdated/) | `gp` Overwrite through Integer Overflow in MIPS32 rel6 Architecture |
+| [speedpwn2](./SekaiCTF/speedpwn2/) | `malloc` to Memory-mapped Region for [Leaks using STDOUT as Read Primitive](https://github.com/nobodyisnobody/docs/tree/main/using.stdout.as.a.read.primitive) through Integer Overflow followed by Tcache Poisoning for GOT Table Overwrite through Integer Overflow |
+
 ### SDCTF
 | Challenge | Key Technique |
 |-----------|---------------|
