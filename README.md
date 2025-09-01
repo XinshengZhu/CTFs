@@ -22,7 +22,7 @@
 | Challenge | Key Technique |
 |-----------|---------------|
 | [obligatory-heap-pwn](./BrunnerCTF/obligatory-heap-pwn/) | Ingenious On-stack Data Leaks followed by Ingenious Return Address Overwrite |
-| [storage](./BrunnerCTF/recipe-storage/) | [House of Enherjar](https://github.com/shellphish/how2heap/blob/master/glibc_2.35/house_of_einherjar.c) followed by Tcache Poisoning for [_exit_handlers Abuse](https://ctftime.org/writeup/34804) |
+| [recipe-storage](./BrunnerCTF/recipe-storage/) | [House of Enherjar](https://github.com/shellphish/how2heap/blob/master/glibc_2.35/house_of_einherjar.c) followed by Tcache Poisoning for [_exit_handlers Abuse](https://ctftime.org/writeup/34804) |
 
 ### DawgCTF
 | Challenge | Key Technique |
