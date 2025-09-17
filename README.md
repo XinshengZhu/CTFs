@@ -131,6 +131,12 @@
 | [ez_printf](./TexSAW/ez_printf/) | Format String Exploit for Leaks and Return Address Overwrite |
 | [ez_rop](./TexSAW/ez_rop/) | ROP with Multiple Gadgets for Leak and Shell |
 
+### TFCCTF
+| Challenge | Key Technique |
+|-----------|---------------|
+| [cromozominus_rex](./TFCCTF/cromozominus_rex/) | Restricted Buffer Overflow for Stack Pivoting and Return Address Overwrite in C-SKY Architecture |
+| [mucusky](./TFCCTF/mucusky/) | Buffer Overflow for Stack Pivoting and Return Address Overwrite in C-SKY Architecture |
+
 ### TRXCTF
 | Challenge | Key Technique |
 |-----------|---------------|
