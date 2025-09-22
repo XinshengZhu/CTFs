@@ -6,7 +6,7 @@ ENV LC_CTYPE=C.UTF-8
 RUN apt-get update 
 
 RUN apt-get install -y \
-    gcc socat curl wget locales gdb gdbserver tmux file vim python3 python3-pip ruby-full
+    gcc socat curl wget locales gdb gdbserver tmux file vim python3 python3-pip ruby-full git
 
 RUN pip3 install pwntools z3-solver angr ropper --break-system-packages
 
@@ -22,4 +22,6 @@ RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && \
 RUN apt-get install -y \
     qemu-user qemu-user-static gdb-multiarch
 
-RUN wget -q https://raw.githubusercontent.com/bata24/gef/dev/install-uv.sh -O- | sh
+RUN git clone https://github.com/pwndbg/pwndbg && \
+    cd pwndbg && \
+    ./setup.sh
