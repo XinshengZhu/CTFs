@@ -25,3 +25,5 @@ RUN apt-get install -y \
 RUN git clone https://github.com/pwndbg/pwndbg && \
     cd pwndbg && \
     ./setup.sh
+
+RUN wget -q https://raw.githubusercontent.com/bata24/gef/dev/install-uv.sh -O- | sh
