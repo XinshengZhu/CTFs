@@ -24,6 +24,12 @@
 | [obligatory-heap-pwn](./BrunnerCTF/obligatory-heap-pwn/) | Ingenious On-stack Data Leaks followed by Ingenious Return Address Overwrite |
 | [recipe-storage](./BrunnerCTF/recipe-storage/) | [House of Enherjar](https://github.com/shellphish/how2heap/blob/master/glibc_2.35/house_of_einherjar.c) followed by Tcache Poisoning for [_exit_handlers Abuse](https://ctftime.org/writeup/34804) |
 
+### CrewCTF
+| Challenge | Key Technique |
+|-----------|---------------|
+| [heap-banging](./CrewCTF/heap-banging/) | [Fastbin Dup into Stack](https://github.com/shellphish/how2heap/blob/master/glibc_2.35/fastbin_dup_into_stack.c) through `global_max_fast` in Glibc followed by Hook Overwrite through `__free_hook` |
+| [heap-jail](./CrewCTF/heap-jail/) | [Large Bin Attack](https://github.com/shellphish/how2heap/blob/master/glibc_2.35/large_bin_attack.c) on `_IO_list_all` followed by Tcache Poisoning for [House of Apple 2](https://www.roderickchan.cn/zh-cn/house-of-apple-%E4%B8%80%E7%A7%8D%E6%96%B0%E7%9A%84glibc%E4%B8%ADio%E6%94%BB%E5%87%BB%E6%96%B9%E6%B3%95-2/) |
+
 ### DawgCTF
 | Challenge | Key Technique |
 |-----------|---------------|
@@ -105,7 +111,7 @@
 ### SekaiCTF
 | Challenge | Key Technique |
 |-----------|---------------|
-| [learning_oop](./SekaiCTF/learning_oop/) | Ingenious `glibc` Leak on Heap and Ingenious Gadgets in `glibc` to Hijack `vtable` pointer of C++ Object |
+| [learning_oop](./SekaiCTF/learning_oop/) | Ingenious Glibc Leak on Heap and Ingenious Gadgets in Glibc to Hijack `vtable` pointer of C++ Object |
 | [outdated](./SekaiCTF/outdated/) | `gp` Overwrite through Integer Overflow in MIPS32 rel6 Architecture |
 | [speedpwn2](./SekaiCTF/speedpwn2/) | `malloc` to Memory-mapped Region for [Leaks using STDOUT as Read Primitive](https://github.com/nobodyisnobody/docs/tree/main/using.stdout.as.a.read.primitive) through Integer Overflow followed by Tcache Poisoning for GOT Table Overwrite through Integer Overflow |
 
