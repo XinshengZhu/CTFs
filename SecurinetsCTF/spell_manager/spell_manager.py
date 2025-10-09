@@ -39,7 +39,7 @@ def delete_spell(slot):
     p.sendlineafter(b"Choice: ", b'4')
     p.sendlineafter(b"Enter spell slot to delete (0-31): ", str(slot).encode())
 
-# malloc a chunk with a given size and read corresponding bytes of data at most into it (this can be used twice at most)
+# malloc a chunk with a given size, read corresponding bytes of data at most into it, and write malloced chunk's data as a string (this can be used twice at most)
 def feedback(size, feedback):
     p.sendlineafter(b"Choice: ", b'5')
     p.sendlineafter(b"Enter size of feedback: ", str(size).encode())
