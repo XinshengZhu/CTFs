@@ -27,7 +27,7 @@
 ### CrewCTF
 | Challenge | Key Technique |
 |-----------|---------------|
-| [heap-banging](./CrewCTF/heap-banging/) | [Fastbin Dup into Stack](https://github.com/shellphish/how2heap/blob/master/glibc_2.35/fastbin_dup_into_stack.c) through `global_max_fast` in Glibc followed by Hook Overwrite through `__free_hook` |
+| [heap-banging](./CrewCTF/heap-banging/) | Fastbin Dup into Glibc through `global_max_fast` and [Fastbin Dup into Stack](https://github.com/shellphish/how2heap/blob/master/glibc_2.35/fastbin_dup_into_stack.c) followed by Hook Overwrite through `__free_hook` |
 | [heap-jail](./CrewCTF/heap-jail/) | [Large Bin Attack](https://github.com/shellphish/how2heap/blob/master/glibc_2.35/large_bin_attack.c) on `_IO_list_all` followed by Tcache Poisoning for [House of Apple 2](https://www.roderickchan.cn/zh-cn/house-of-apple-%E4%B8%80%E7%A7%8D%E6%96%B0%E7%9A%84glibc%E4%B8%ADio%E6%94%BB%E5%87%BB%E6%96%B9%E6%B3%95-2/) |
 
 ### DawgCTF
@@ -108,18 +108,24 @@
 | [compress](./PwnMe/compress/) | [Unsafe Unlink](https://github.com/shellphish/how2heap/blob/master/glibc_2.35/unsafe_unlink.c) for [_exit_handlers Abuse](https://ctftime.org/writeup/34804) |
 | [got](./PwnMe/got/) | Integer Overflow for GOT Table Overwrite |
 
+### SDCTF
+| Challenge | Key Technique |
+|-----------|---------------|
+| [Gutenberg](./SDCTF/Gutenberg/) | Format String Exploit for GOT Table Overwrite |
+| [Shellphone](./SDCTF/Shellphone/) | Shellcode Injection using `execve` |
+
+### SecurinetsCTF
+| Challenge | Key Technique |
+|-----------|---------------|
+| [spell_manager](./SecurinetsCTF/spell_manager/) | Fastbin Poisoning to Heap and Tcache Poisoning to Glibc for Leaks and Fastbin Poisoning to Stack for ROP |
+| [V-tables](./SecurinetsCTF/V-tables/) | [House of Apple 2](https://www.roderickchan.cn/zh-cn/house-of-apple-%E4%B8%80%E7%A7%8D%E6%96%B0%E7%9A%84glibc%E4%B8%ADio%E6%94%BB%E5%87%BB%E6%96%B9%E6%B3%95-2/) through `_IO_2_1_stdout_`'s `_chain` |
+
 ### SekaiCTF
 | Challenge | Key Technique |
 |-----------|---------------|
 | [learning_oop](./SekaiCTF/learning_oop/) | Ingenious Glibc Leak on Heap and Ingenious Gadgets in Glibc to Hijack `vtable` pointer of C++ Object |
 | [outdated](./SekaiCTF/outdated/) | `gp` Overwrite through Integer Overflow in MIPS32 rel6 Architecture |
 | [speedpwn2](./SekaiCTF/speedpwn2/) | `malloc` to Memory-mapped Region for [Leaks using STDOUT as Read Primitive](https://github.com/nobodyisnobody/docs/tree/main/using.stdout.as.a.read.primitive) through Integer Overflow followed by Tcache Poisoning for GOT Table Overwrite through Integer Overflow |
-
-### SDCTF
-| Challenge | Key Technique |
-|-----------|---------------|
-| [Gutenberg](./SDCTF/Gutenberg/) | Format String Exploit for GOT Table Overwrite |
-| [Shellphone](./SDCTF/Shellphone/) | Shellcode Injection using `execve` |
 
 ### smileyCTF
 | Challenge | Key Technique |
