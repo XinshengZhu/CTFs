@@ -22,7 +22,14 @@
 | Challenge | Key Technique |
 |-----------|---------------|
 | [obligatory-heap-pwn](./BrunnerCTF/obligatory-heap-pwn/) | Ingenious On-stack Data Leaks followed by Ingenious Return Address Overwrite |
-| [recipe-storage](./BrunnerCTF/recipe-storage/) | [House of Enherjar](https://github.com/shellphish/how2heap/blob/master/glibc_2.35/house_of_einherjar.c) followed by Tcache Poisoning for [_exit_handlers Abuse](https://ctftime.org/writeup/34804) |
+| [recipe-storage](./BrunnerCTF/recipe-storage/) | [House of Enherjar](https://github.com/shellphish/how2heap/blob/master/glibc_2.35/house_of_einherjar.c) followed by Tcache Poisoning for [__exit_funcs Abuse](https://blog.rop.la/en/exploiting/2024/06/11/code-exec-part1-from-exit-to-system.html) |
+
+### COMPFEST
+| Challenge | Key Technique |
+|-----------|---------------|
+| [AllIn](./COMPFEST/AllIn/) | Format String Exploit for Leaks and [Fastbin Dup](https://github.com/shellphish/how2heap/blob/master/glibc_2.35/fastbin_dup.c) followed by [Fastbin Reverse into Tcache](https://github.com/shellphish/how2heap/blob/master/glibc_2.35/fastbin_reverse_into_tcache.c) and Tcache Poisoning for ROP |
+| [gumshoe](./COMPFEST/gumshoe/) | Tcache Poisoning with Double Free for [__exit_funcs Abuse](https://blog.rop.la/en/exploiting/2024/06/11/code-exec-part1-from-exit-to-system.html) |
+| [OfficeSimulator](./COMPFEST/OfficeSimulator/) | Hijack `vtable` pointer of C++ Object through Integer Overflow |
 
 ### CrewCTF
 | Challenge | Key Technique |
@@ -61,7 +68,7 @@
 |-----------|---------------|
 | [FantaxoticFledgling](./JerseyCTFV/FantaxoticFledgling/) | Replicate PRNG `srand(time(NULL))` followed by Buffer Overflow |
 | [Mallorcy](./JerseyCTFV/Mallorcy/) | Format String Exploit for Leaks and GOT Table Overwrite |
-| [RokosJerseyLottery](./JerseyCTFV/RokosJerseyLottery/) | `z3-solver` Utilize and Tcache Poisoning for [_exit_handlers Abuse](https://ctftime.org/writeup/34804) |
+| [RokosJerseyLottery](./JerseyCTFV/RokosJerseyLottery/) | `z3-solver` Utilize and Tcache Poisoning for [__exit_funcs Abuse](https://blog.rop.la/en/exploiting/2024/06/11/code-exec-part1-from-exit-to-system.html) |
 
 ### justCTF
 | Challenge | Key Technique |
@@ -105,7 +112,7 @@
 ### PwnMe
 | Challenge | Key Technique |
 |-----------|---------------|
-| [compress](./PwnMe/compress/) | [Unsafe Unlink](https://github.com/shellphish/how2heap/blob/master/glibc_2.35/unsafe_unlink.c) for [_exit_handlers Abuse](https://ctftime.org/writeup/34804) |
+| [compress](./PwnMe/compress/) | [Unsafe Unlink](https://github.com/shellphish/how2heap/blob/master/glibc_2.35/unsafe_unlink.c) for [__exit_funcs Abuse](https://blog.rop.la/en/exploiting/2024/06/11/code-exec-part1-from-exit-to-system.html) |
 | [got](./PwnMe/got/) | Integer Overflow for GOT Table Overwrite |
 
 ### SDCTF
