@@ -59,7 +59,7 @@
 |-----------|---------------|
 | [cascade](./ImaginaryCTF/cascade/) | ROP with Special Gadgets to Change GOT Table Entry |
 | [fiumicino](./ImaginaryCTF/fiumicino/) | Format String Exploit for Leaks and Environment Variable Overwrite and Return Address Overwrite |
-| [multiplication](./ImaginaryCTF/multiplication/) | [malloc_par Exploit for Tcache Bin Control](https://4xura.com/binex/pwn-mp_-exploiting-malloc_par-to-gain-tcache-bin-control/) and [House of Enherjar](https://github.com/shellphish/how2heap/blob/master/glibc_2.35/house_of_einherjar.c) followed by Tcache Poisoning for [FSOP](https://niftic.ca/posts/fsop/) |
+| [multiplication](./ImaginaryCTF/multiplication/) | Tcache Metadata Struct Exploit and [House of Enherjar](https://github.com/shellphish/how2heap/blob/master/glibc_2.35/house_of_einherjar.c) followed by Tcache Poisoning for [FSOP](https://niftic.ca/posts/fsop/) |
 | [stillerer-printf](./ImaginaryCTF/stillerer-printf/) | [Advanced Format String Exploit using Leakless Pointer Chains on Stack](https://hazyclimb.dev/posts/stiller-printf/) for Return Address LSB Overwrite |
 | [twowrite](./ImaginaryCTF/twowrite/) | Two Arbitary Writes for TLS Canary Overwrite and GOT Table Overwrite |
 
@@ -108,6 +108,11 @@
 |-----------|---------------|
 | [mrropot](./PearlCTF/mrropot/) | Format String Exploit for Leaks followed by ROP |
 | [source](./PearlCTF/source/) | Buffer Overflow to Pass `strcmp` |
+
+### PlaidCTF
+| Challenge | Key Technique |
+|-----------|---------------|
+| [BountyBoard](./PlaidCTF/BountyBoard/) | [RetroverFlow](https://github.com/n132/RetroverFlow/) for [House of Orange](https://github.com/shellphish/how2heap/blob/master/glibc_2.23/house_of_orange.c) and Tcache Metadata Struct Exploit followed by [Leak using STDOUT as Read Primitive](https://github.com/nobodyisnobody/docs/tree/main/using.stdout.as.a.read.primitive) and [FSOP](https://niftic.ca/posts/fsop/) |
 
 ### PwnMe
 | Challenge | Key Technique |
