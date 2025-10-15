@@ -72,3 +72,5 @@ while True:
     create_notes(0xf7, bytes(fake))
 
     p.interactive()
+
+# https://unvariant.pages.dev/writeups/plaidctf-2025/pwn-bounty-board/
