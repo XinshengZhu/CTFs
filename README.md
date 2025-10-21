@@ -1,5 +1,7 @@
 # CTFs: always PWN
 
+A repository that contains the CTF challenges I played! The challenges I wrote are [here](https://github.com/XinshengZhu/MyChallenges)!
+
 **_I'm currently playing CTFs as [4n74r3s](https://ctftime.org/user/212881) with [NYUSEC](https://ctftime.org/team/439), [L3ak](https://ctftime.org/team/220336), and [Lil L3ak](https://ctftime.org/team/373171)!_**
 
 ## PWN Challenges
