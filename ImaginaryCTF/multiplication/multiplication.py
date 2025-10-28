@@ -98,5 +98,4 @@ create_string(0x108, bytes(fake))
 
 p.interactive()
 
-# https://4xura.com/binex/pwn-mp_-exploiting-malloc_par-to-gain-tcache-bin-control/
 # ictf{p0w3r_0f_d0ubl1ng_fr_73e65974ce1f}
