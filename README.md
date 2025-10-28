@@ -76,7 +76,7 @@ A repository that contains the CTF challenges I played! The challenges I wrote a
 | Challenge | Key Technique |
 |-----------|---------------|
 | [babyheap](./justCTF/babyheap/) | Tcache Poisoning to Heap to Fake Chunk Size for Leaks followed by Tcache Poisoning to Stack for ROP |
-| [prospector](./justCTF/prospector/) | Buffer Overflow to Fail Function Calls to Produce Brute-Force followed by ROP with Gadgets in `ld` |
+| [prospector](./justCTF/prospector/) | Buffer Overflow to Produce Brute-Force followed by ROP with Gadgets in LD |
 | [shellcode_printer](./justCTF/shellcode_printer/) | Format String Exploit for Memory-mapped Region Overwrite |
 
 ### KashiCTF
