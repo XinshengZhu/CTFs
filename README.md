@@ -30,7 +30,7 @@ A repository that contains the CTF challenges I played! The challenges I wrote a
 | Challenge | Key Technique |
 |-----------|---------------|
 | [AllIn](./COMPFEST/AllIn/) | Format String Exploit for Leaks and [Fastbin Dup](https://github.com/shellphish/how2heap/blob/master/glibc_2.35/fastbin_dup.c) followed by [Fastbin Reverse into Tcache](https://github.com/shellphish/how2heap/blob/master/glibc_2.35/fastbin_reverse_into_tcache.c) and Tcache Poisoning for ROP |
-| [gumshoe](./COMPFEST/gumshoe/) | Tcache Poisoning with Double Free for [__exit_funcs Abuse](https://blog.rop.la/en/exploiting/2024/06/11/code-exec-part1-from-exit-to-system.html) |
+| [gumshoe](./COMPFEST/gumshoe/) | Tcache Poisoning after Double Free for [__exit_funcs Abuse](https://blog.rop.la/en/exploiting/2024/06/11/code-exec-part1-from-exit-to-system.html) |
 | [OfficeSimulator](./COMPFEST/OfficeSimulator/) | Hijack `vtable` pointer of C++ Object through Integer Overflow |
 
 ### CrewCTF
@@ -53,15 +53,15 @@ A repository that contains the CTF challenges I played! The challenges I wrote a
 ### idekCTF
 | Challenge | Key Technique |
 |-----------|---------------|
-| [little-rop](./idekCTF/little-rop/) | ROP with Special Gadgets for Multiple Times of Stack Pivoting to Change GOT Table Entry |
+| [little-rop](./idekCTF/little-rop/) | ROP with Special Gadgets for Stack Pivoting to Change GOT Table Entry |
 | [myspace2](./idekCTF/myspace2/) | Integer Overflow for Stack Canary Leak followed by Return Address Overwrite |
 
 ### ImaginaryCTF
 | Challenge | Key Technique |
 |-----------|---------------|
-| [cascade](./ImaginaryCTF/cascade/) | ROP with Special Gadgets to Change GOT Table Entry |
+| [cascade](./ImaginaryCTF/cascade/) | ROP with Special Gadgets for Stack Pivoting to Change GOT Table Entry |
 | [fiumicino](./ImaginaryCTF/fiumicino/) | Format String Exploit for Leaks and Environment Variable Overwrite and Return Address Overwrite |
-| [multiplication](./ImaginaryCTF/multiplication/) | Tcache Metadata Struct Exploit and [House of Enherjar](https://github.com/shellphish/how2heap/blob/master/glibc_2.35/house_of_einherjar.c) followed by Tcache Poisoning for [FSOP](https://niftic.ca/posts/fsop/) |
+| [multiplication](./ImaginaryCTF/multiplication/) | `malloc` to Memory-mapped Region for [Leaks using STDOUT as Read Primitive](https://github.com/nobodyisnobody/docs/tree/main/using.stdout.as.a.read.primitive) through Integer Overflow and [House of Enherjar](https://github.com/shellphish/how2heap/blob/master/glibc_2.35/house_of_einherjar.c) with Tcache Perthread Struct Exploit followed by Tcache Poisoning for [FSOP](https://niftic.ca/posts/fsop/) |
 | [stillerer-printf](./ImaginaryCTF/stillerer-printf/) | [Advanced Format String Exploit using Leakless Pointer Chains on Stack](https://hazyclimb.dev/posts/stiller-printf/) for Return Address LSB Overwrite |
 | [twowrite](./ImaginaryCTF/twowrite/) | Two Arbitary Writes for TLS Canary Overwrite and GOT Table Overwrite |
 
@@ -97,8 +97,8 @@ A repository that contains the CTF challenges I played! The challenges I wrote a
 ### m0leConCTF
 | Challenge | Key Technique |
 |-----------|---------------|
-| [bronze-and-copper-pwn-shop](./m0leConCTF/bronze-and-copper-pwn-shop/) |  |
-| [yet-another-heap-challenge](./m0leConCTF/yet-another-heap-challenge/) |  |
+| [bronze-and-copper-pwn-shop](./m0leConCTF/bronze-and-copper-pwn-shop/) | [Fastbin Reverse into Tcache](https://github.com/shellphish/how2heap/blob/master/glibc_2.35/fastbin_reverse_into_tcache.c) followed by Tcache Poisoning to Heap for Leaks and to Stack for ROP |
+| [yet-another-heap-challenge](./m0leConCTF/yet-another-heap-challenge/) | Heap Feng Shui for Arbitrary Free by `realloc` Error under Limit Memory of `pthread_getattr_np`'s `pthread_attr_setaffinity` followed by Tcache Perthread Struct Exploit for FSOP |
 
 ### NahamCon
 | Challenge | Key Technique |
