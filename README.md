@@ -98,7 +98,7 @@ The challenges I wrote are [here](https://github.com/XinshengZhu/MyChallenges)!
 | Challenge | Key Technique |
 |-----------|---------------|
 | [bronze-and-copper-pwn-shop](./m0leConCTF/bronze-and-copper-pwn-shop/) | [Fastbin Reverse into Tcache](https://github.com/shellphish/how2heap/blob/master/glibc_2.35/fastbin_reverse_into_tcache.c) followed by Tcache Poisoning to Heap for Leaks and to Stack for ROP |
-| [yet-another-heap-challenge](./m0leConCTF/yet-another-heap-challenge/) | Heap Feng Shui for Arbitrary Free by `realloc` Failure within `pthread_getattr_np`'s `pthread_attr_setaffinity` under Limit Memory (`RLIMIT_AS`) followed by Tcache Perthread Struct Exploit for FSOP |
+| [yet-another-heap-challenge](./m0leConCTF/yet-another-heap-challenge/) | Heap Feng Shui for Arbitrary Free by `realloc` Failure within `pthread_getattr_np`'s `pthread_attr_setaffinity` under Memory Limit (`RLIMIT_AS`) followed by Tcache Perthread Struct Exploit for FSOP |
 
 ### NahamCon
 | Challenge | Key Technique |
