@@ -1,0 +1,7 @@
+var_18 = 0xd2f969f60c4d9270 (little-endian)
+var_10 = 0x1f35021256bdca3c (little-endian)
+md5_hash = 70924d0cf669f9d23ccabd561202351f
+crack md5 hash on https://crackstation.net/
+get result "emergencycall911"
+use it as input to get flag
+DUCTF{In_the_land_of_cubicles_lined_in_gray_Where_the_clock_ticks_loud_by_the_light_of_day}
