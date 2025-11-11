@@ -1,7 +1,5 @@
 # CTFs: always PWN
 
-The challenges I wrote are [here](https://github.com/XinshengZhu/MyChallenges)!
-
 **_I'm currently playing CTFs as [4n74r3s](https://ctftime.org/user/212881) with [NYUSEC](https://ctftime.org/team/439), [L3ak](https://ctftime.org/team/220336), and [Lil L3ak](https://ctftime.org/team/373171)!_**
 
 ## PWN Challenges
@@ -25,6 +23,13 @@ The challenges I wrote are [here](https://github.com/XinshengZhu/MyChallenges)!
 |-----------|---------------|
 | [obligatory-heap-pwn](./BrunnerCTF/obligatory-heap-pwn/) | Ingenious On-stack Data Leaks followed by Ingenious Return Address Overwrite |
 | [recipe-storage](./BrunnerCTF/recipe-storage/) | [House of Enherjar](https://github.com/shellphish/how2heap/blob/master/glibc_2.35/house_of_einherjar.c) followed by Tcache Poisoning for [__exit_funcs Abuse](https://blog.rop.la/en/exploiting/2024/06/11/code-exec-part1-from-exit-to-system.html) |
+
+### BrunnerCTF
+| Challenge | Key Technique |
+|-----------|---------------|
+| [chirp](./BuckeyeCTF/chirp/) | Format String Exploit for Leak followed by Return Address Overwrite |
+| [guessing_game](./BuckeyeCTF/guessing_game/) | Stack Canary Brute-Force followed by ROP |
+| [iloverust](./BuckeyeCTF/iloverust/) | Integer Overflow for Leaks and Tcache Perthread Struct Exploit for GOT Table Overwrite |
 
 ### COMPFEST
 | Challenge | Key Technique |
