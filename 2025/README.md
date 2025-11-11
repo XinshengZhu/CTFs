@@ -1,4 +1,4 @@
-## PWN Challenges
+## 2025
 
 ### 1753CTF
 | Challenge | Key Technique |
