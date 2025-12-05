@@ -114,6 +114,11 @@
 | [hateful](./Nullcon/hateful/) | Format String Exploit for Leaks followed by ROP|
 | [hateful2](./Nullcon/hateful2/) | Tcache Poisoning to Stack for ROP |
 
+### PatriotCTF
+| Challenge | Key Technique |
+|---------------|---------------|
+| [cursed_format](./PatriotCTF/cursed_format/) | Format String Exploit for Leaks and GOT Table Overwrite |
+
 ### PearlCTF
 | Challenge | Key Technique |
 |---------------|---------------|
