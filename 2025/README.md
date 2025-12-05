@@ -36,6 +36,12 @@
 | [gumshoe](./COMPFEST/gumshoe/) | Tcache Poisoning after Double Free for [__exit_funcs Abuse](https://blog.rop.la/en/exploiting/2024/06/11/code-exec-part1-from-exit-to-system.html) |
 | [OfficeSimulator](./COMPFEST/OfficeSimulator/) | Hijack `vtable` pointer of C++ Object through Integer Overflow |
 
+### CrateCTF
+| Challenge | Key Technique |
+|---------------|---------------|
+| [armsdealer](./CrateCTF/armsdealer/) | Shellcode Injection and Return Address Overwrite in ARM 32 Architecture |
+| [riscy_business2](./CrateCTF/riscy_business2/) | ROP with Special Gadgets in RISC-V 64 Architecture |
+
 ### CrewCTF
 | Challenge | Key Technique |
 |---------------|---------------|
@@ -207,7 +213,7 @@
 | Challenge | Key Technique |
 |---------------|---------------|
 | [aura](./UMDCTF/aura/) | File Structure Arbitrary Write |
-| [gambling2](./UMDCTF/gambling2/) | Return Address Overwrite within Intel 80386 Architecture |
+| [gambling2](./UMDCTF/gambling2/) | Return Address Overwrite in Intel 80386 Architecture |
 | [one-write](./UMDCTF/one-write/) | Free in Post Tcache Poisoning Stage for Leaks followed by [Unsafe Unlink](https://github.com/shellphish/how2heap/blob/master/glibc_2.35/unsafe_unlink.c) for GOT Table Overwrite |
 | [prison-realm](./UMDCTF/prison-realm/) | ROP with `fgets` and Special Gadgets to Change GOT Table Entry |
 | [unfinished](./UMDCTF/unfinished/) | `.bss` Section Overflow |
