@@ -117,7 +117,7 @@
 ### PatriotCTF
 | Challenge | Key Technique |
 |---------------|---------------|
-| [cursed_format](./PatriotCTF/cursed_format/) | Format String Exploit for Leaks and GOT Table Overwrite |
+| [cursed_format](./PatriotCTF/cursed_format/) | Format String Exploit for Leaks and ROP |
 
 ### PearlCTF
 | Challenge | Key Technique |
