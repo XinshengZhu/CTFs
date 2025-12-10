@@ -142,7 +142,7 @@
 | [compress](./PwnMe/compress/) | [Unsafe Unlink](https://github.com/shellphish/how2heap/blob/master/glibc_2.35/unsafe_unlink.c) for [__exit_funcs Abuse](https://blog.rop.la/en/exploiting/2024/06/11/code-exec-part1-from-exit-to-system.html) |
 | [got](./PwnMe/got/) | Integer Overflow for GOT Table Overwrite |
 
-### PwnSec CTF
+### PwnSecCTF
 | Challenge | Key Technique |
 |---------------|---------------|
 | [my_note](./PwnSecCTF/my_note/) | Off-By-Null for Integer Overflow followed by Free in Post Tcache Poisoning Stage for Leak and Tcache Poisoning for ROP |
