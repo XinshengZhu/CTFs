@@ -123,7 +123,7 @@
 ### NullCTF
 | Challenge | Key Technique |
 |---------------|---------------|
-| [distrustful](./NullCTF/distrustful/) | Ingenious Heap Feng Shui for Leaks and Tcache Poisoning followed by [FSOP](https://niftic.ca/posts/fsop/) |
+| [distrustful](./NullCTF/distrustful/) | Ingenious Heap Feng Shui for Leaks and Tcache Poisoning followed by `.bss` Section Overwrite and [FSOP](https://niftic.ca/posts/fsop/) |
 | [sketchy](./NullCTF/sketchy/) | Buffer Overflow and GOT Table Overwrite followed by SIGALRM Waiting |
 
 ### PatriotCTF
