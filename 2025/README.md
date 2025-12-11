@@ -152,7 +152,7 @@
 | Challenge | Key Technique |
 |---------------|---------------|
 | [my_note](./PwnSecCTF/my_note/) | Off-By-Null for Integer Overflow followed by Free in Post Tcache Poisoning Stage for Leak and Tcache Poisoning for ROP |
-| [pet-management](./PwnSecCTF/pet-management/) | Tcache Poisoning for [TLS-Storage dtor_list Overwrite](https://github.com/nobodyisnobody/docs/tree/main/code.execution.on.last.libc#5---code-execution-via-tls-storage-dtor_list-overwrite) |
+| [Pet-Management](./PwnSecCTF/Pet-Management/) | Tcache Poisoning for [TLS-Storage dtor_list Overwrite](https://github.com/nobodyisnobody/docs/tree/main/code.execution.on.last.libc#5---code-execution-via-tls-storage-dtor_list-overwrite) |
 
 ### QnQSecCTF
 | Challenge | Key Technique |
