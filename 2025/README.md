@@ -120,6 +120,12 @@
 | [hateful](./Nullcon/hateful/) | Format String Exploit for Leaks followed by ROP|
 | [hateful2](./Nullcon/hateful2/) | Tcache Poisoning to Stack for ROP |
 
+### NullCTF
+| Challenge | Key Technique |
+|---------------|---------------|
+| [distrustful](./NullCTF/distrustful/) | Ingenious Heap Feng Shui for Leaks and Tcache Poisoning followed by [FSOP](https://niftic.ca/posts/fsop/) |
+| [sketchy](./NullCTF/sketchy/) | Buffer Overflow and GOT Table Overwrite followed by SIGALRM Waiting |
+
 ### PatriotCTF
 | Challenge | Key Technique |
 |---------------|---------------|
