@@ -11,7 +11,7 @@
 | Challenge | Key Technique |
 |---------------|---------------|
 | [crazy-fsop](./AmateursCTF/crazy-fsop/) | Integer Overflow for Leaks and Tcache Perthread Struct Exploit for [FSOP](https://niftic.ca/posts/fsop/) |
-| [unexpected](./AmateursCTF/unexpected/) | ROP with Special Gadgets to Change GOT Table Entry |
+| [unexpected](./AmateursCTF/unexpected/) | Buffer Overflow followed by ROP with Special Gadgets to Change GOT Table Entry |
 
 ### b01lersCTF
 | Challenge | Key Technique |
