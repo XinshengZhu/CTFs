@@ -7,6 +7,12 @@
 |---------------|---------------|
 | [Leakcan](./1753CTF/Leakcan/) | Stack Canary Leak followed by Return Address Overwrite |
 
+### AmateursCTF
+| Challenge | Key Technique |
+|---------------|---------------|
+| [crazy-fsop](./AmateursCTF/crazy-fsop/) | Integer Overflow for Leaks and Tcache Perthread Struct Exploit for [FSOP](https://niftic.ca/posts/fsop/) |
+| [unexpected](./AmateursCTF/unexpected/) | ROP with Special Gadgets to Change GOT Table Entry |
+
 ### b01lersCTF
 | Challenge | Key Technique |
 |---------------|---------------|
@@ -19,7 +25,7 @@
 ### BackdoorCTF
 | Challenge | Key Technique |
 |---------------|---------------|
-| [Aladdin_ka_Chirag](./BackdoorCTF/Aladdin_ka_Chirag/) | Format String Exploit for Leaks followed by Stack Pivoting to Special Gadget |
+| [Aladdin_ka_Chirag](./BackdoorCTF/Aladdin_ka_Chirag/) | Format String Exploit for Leaks followed by Stack Pivoting for ROP with Special Gadget |
 | [Santa's_Workshop](./BackdoorCTF/Santa's_Workshop/) | [House of Enherjar](https://github.com/shellphish/how2heap/blob/master/glibc_2.35/house_of_einherjar.c) to Tcache Poisoning for Leaks and `.bss` Section Overwrite |
 | [The_Last_Duel](./BackdoorCTF/The_Last_Duel/) | Ingenious Heap Feng Shui for Off-By-One followed by Leaks and Tcache Poisoning followed by [FSOP](https://niftic.ca/posts/fsop/) |
 
