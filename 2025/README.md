@@ -16,6 +16,13 @@
 | [trolley-problem](./b01lersCTF/trolley-problem/) | Stack Canary Brute-Force followed by Return Address Overwrite |
 | [where](./b01lersCTF/where/) | Shellcode Injection with NX Disabled |
 
+### BackdoorCTF
+| Challenge | Key Technique |
+|---------------|---------------|
+| [Aladdin_ka_Chirag](./BackdoorCTF/Aladdin_ka_Chirag/) | Format String Exploit for Leaks followed by Stack Pivoting to Special Gadget |
+| [Santa's_Workshop](./BackdoorCTF/Santa's_Workshop/) | [House of Enherjar](https://github.com/shellphish/how2heap/blob/master/glibc_2.35/house_of_einherjar.c) to Tcache Poisoning for Leaks and `.bss` Section Overwrite |
+| [The_Last_Duel](./BackdoorCTF/The_Last_Duel/) | Ingenious Heap Feng Shui for Off-By-One followed by Leaks and Tcache Poisoning followed by [FSOP](https://niftic.ca/posts/fsop/) |
+
 ### BrunnerCTF
 | Challenge | Key Technique |
 |---------------|---------------|
