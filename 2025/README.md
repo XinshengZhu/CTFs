@@ -83,7 +83,7 @@
 |---------------|---------------|
 | [cascade](./ImaginaryCTF/cascade/) | ROP with Special Gadgets for Stack Pivoting to Change GOT Table Entry |
 | [fiumicino](./ImaginaryCTF/fiumicino/) | Format String Exploit for Leaks and Environment Variable Overwrite and Return Address Overwrite |
-| [multiplication](./ImaginaryCTF/multiplication/) | `malloc` to Memory-mapped Region for [Leaks using STDOUT as Read Primitive](https://github.com/nobodyisnobody/docs/tree/main/using.stdout.as.a.read.primitive) through Integer Overflow and [House of Enherjar](https://github.com/shellphish/how2heap/blob/master/glibc_2.35/house_of_einherjar.c) with Tcache Perthread Struct Exploit followed by Tcache Poisoning for [FSOP](https://niftic.ca/posts/fsop/) |
+| [multiplication](./ImaginaryCTF/multiplication/) | `malloc` to Memory-mapped Region for [Leaks using STDOUT as Read Primitive](https://github.com/nobodyisnobody/docs/tree/main/using.stdout.as.a.read.primitive) through Integer Overflow and [House of Enherjar](https://github.com/shellphish/how2heap/blob/master/glibc_2.35/house_of_einherjar.c) with Tcache Perthread Struct Exploit for [FSOP](https://niftic.ca/posts/fsop/) through Tcache Poisoning |
 | [stillerer-printf](./ImaginaryCTF/stillerer-printf/) | [Advanced Format String Exploit using Leakless Pointer Chains on Stack](https://hazyclimb.dev/posts/stiller-printf/) for Return Address LSB Overwrite |
 | [twowrite](./ImaginaryCTF/twowrite/) | Two Arbitary Writes for TLS Canary Overwrite and GOT Table Overwrite |
 
