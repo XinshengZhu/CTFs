@@ -116,6 +116,12 @@
 | [minceraft](./LACTF/minceraft/) | ROP with Multiple Gadgets for Leak and Shell |
 | [state-change](./LACTF/state-change/) | Stack Pivoting to `.bss` Section |
 
+### LakeCTF
+| Challenge | Key Technique |
+|---------------|---------------|
+| [new-mitigations](./LakeCTF/new-mitigations/) | Heap Feng Shui followed by Tcache Perthread Struct Exploit for [FSOP](https://niftic.ca/posts/fsop/) in Glibc 2.42 |
+| [unlink-this](./LakeCTF/unlink-this/) | Heap Feng Shui to Unlink within [jemalloc](https://github.com/jemalloc/jemalloc) Allocator |
+
 ### m0leConCTF
 | Challenge | Key Technique |
 |---------------|---------------|
