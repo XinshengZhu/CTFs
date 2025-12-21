@@ -241,6 +241,12 @@
 | [canon_event](./TRXCTF/canon_event/) | Shellcode Injection using `fork` & `ptrace` & `wait4` |
 | [virtual_insanity](./TRXCTF/virtual_insanity/) | ROP with Gadgets in `vsyscalls` Area |
 
+### TSGCTF
+| Challenge | Key Technique |
+|---------------|---------------|
+| [closed_ended](./TSGCTF/closed_ended/) | ROP within Changable ELF Memory for Stack Pivoting and Shellcode Injection |
+| [TSG_LAND](./TSGCTF/TSG_LAND/) | Produce Arbitrary Read for Leak and Arbitrary Write for [FSOP](https://niftic.ca/posts/fsop/) |
+
 ### UIUCTF
 | Challenge | Key Technique |
 |---------------|---------------|
