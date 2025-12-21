@@ -245,7 +245,7 @@
 | Challenge | Key Technique |
 |---------------|---------------|
 | [closed_ended](./TSGCTF/closed_ended/) | ROP within Changable ELF Memory for Stack Pivoting and Shellcode Injection |
-| [TSG_LAND](./TSGCTF/TSG_LAND/) | Produce Arbitrary Read for Leak and Arbitrary Write for [FSOP](https://niftic.ca/posts/fsop/) |
+| [TSG_LAND](./TSGCTF/TSG_LAND/) | Exploit `setjmp`/`longjmp` to Produce Arbitrary Read for Leak and Arbitrary Write for [FSOP](https://niftic.ca/posts/fsop/) |
 
 ### UIUCTF
 | Challenge | Key Technique |
