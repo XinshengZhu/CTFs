@@ -137,7 +137,7 @@
 | Challenge | Key Technique |
 |---------------|---------------|
 | [beating_yellow_king_with_musl_in_ng+](./niteCTF/beating_yellow_king_with_musl_in_ng+/) | Format String Exploit without Dollar Sign for Leak and `__funcs_on_exit` Abuse within MUSL Libc |
-| [IEEE_DANCER](./niteCTF/IEEE_DANCER/) | Shellcode Injection using `open` & `read` & `write`|
+| [IEEE_DANCER](./niteCTF/IEEE_DANCER/) | Shellcode Injection using `open` & `read` & `write` |
 | [NiteBus](./niteCTF/NiteBus/) | Format String Exploit for Leak followed by ROP with Special Gadgets in ARM 64 Architecture  |
 
 ### Nullcon
