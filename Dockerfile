@@ -22,8 +22,4 @@ RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && \
 RUN apt-get install -y \
     qemu-user qemu-user-static gdb-multiarch
 
-RUN git clone https://github.com/pwndbg/pwndbg && \
-    cd pwndbg && \
-    ./setup.sh
-
 RUN wget -q https://raw.githubusercontent.com/bata24/gef/dev/install-uv.sh -O- | sh
