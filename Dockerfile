@@ -7,6 +7,7 @@ RUN apt-get update && \
     apt-get install -y \
         gcc \
         cmake \
+        locales \
         socat \
         curl \
         wget \
