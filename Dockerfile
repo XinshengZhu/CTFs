@@ -3,40 +3,22 @@ FROM ubuntu:latest
 ENV DEBIAN_FRONTEND=noninteractive
 ENV LC_CTYPE=C.UTF-8
 
-RUN apt-get update && \
-    apt-get install -y \
-        gcc \
-        cmake \
-        locales \
-        socat \
-        curl \
-        wget \
-        gdb \
-        gdbserver \
-        gdb-multiarch \
-        tmux \
-        vim \
-        file \
-        python3 \
-        python3-pip \
-        ruby-full \
-        git \
-        patchelf \
-        elfutils \
-        libssl-dev \
-        liblzma-dev \
-        libcapstone-dev \
-        qemu-user-binfmt \
-        pkg-config \
-        linux-tools-common && \
-    rm -rf /var/lib/apt/lists/*
+ENV PATH="/root/.gef/.venv-gef/bin:${PATH}"
+RUN apt-get update && apt-get install -y wget
+RUN wget -q https://raw.githubusercontent.com/bata24/gef/dev/install-uv.sh -O- | sh
+RUN echo ". /root/.gef/.venv-gef/bin/activate" >> /root/.bashrc
 
-RUN pip3 install pwntools z3-solver ropper angr --break-system-packages
+ENV PATH="/root/.local/bin:${PATH}"
+RUN apt-get install -y pkg-config cmake build-essential
+RUN uv pip install pwntools
 
-RUN gem install one_gadget seccomp-tools
+RUN apt-get install -y qemu-user qemu-system
 
 ENV PATH="/root/.cargo/bin:${PATH}"
-RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && \
-    cargo install pwninit
+RUN apt-get install -y curl
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 
-RUN wget -q https://raw.githubusercontent.com/bata24/gef/dev/install-uv.sh -O- | sh
+RUN apt-get install -y libssl-dev liblzma-dev
+RUN cargo install pwninit
+
+RUN rm -rf /var/lib/apt/lists/*
