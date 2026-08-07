@@ -16,5 +16,5 @@ uv pip install pwntools
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 . "$HOME/.cargo/env"
 
-apt-get install -y libssl-dev liblzma-dev
+apt-get install -y patchelf libssl-dev liblzma-dev
 cargo install pwninit
