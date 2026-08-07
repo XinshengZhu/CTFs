@@ -10,6 +10,12 @@
 | [New Age](./0xL4ughCTF/new_age/) | Shellcode Injection using `openat2` & `read` & `write` and implementing `memcpy` |
 | [Zoro’s Blind Path](./0xL4ughCTF/zoro/) | Format String Exploit without Dollar Sign for [FSOP](https://niftic.ca/posts/fsop/) |
 
+### b01lersCTF
+| Challenge | Key Technique |
+|---------------|---------------|
+| [priority-queue](./b01lersCTF/priority-queue/) | Tcache Poisoning to Heap for Leak |
+| [transmutation](./b01lersCTF/transmutation/) | Shellcode Injection within Changable ELF Memory |
+
 ### LACTF
 | Challenge | Key Technique |
 |---------------|---------------|
@@ -18,3 +24,8 @@
 | [ScrabASM](./LACTF/ScrabASM/) | Replicate PRNG `srand(time(NULL))` followed by Shellcode Injection |
 | [tcademy](./LACTF/tcademy/) | [House of Orange](https://github.com/shellphish/how2heap/blob/master/glibc_2.23/house_of_orange.c) for Leaks followed by Tcache Poisoning for [FSOP](https://niftic.ca/posts/fsop/) |
 | [tic-tac-no](./LACTF/tic-tac-no/) | Integer Overflow for `.bss` Section Overwrite |
+
+### squ1rrelCTF
+| Challenge | Key Technique |
+|---------------|---------------|
+| [geam](./squ1rrelCTF/gaem/) | Format String Exploit for Leak and ROP |
