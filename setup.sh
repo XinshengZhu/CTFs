@@ -18,3 +18,5 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 
 apt-get install -y patchelf libssl-dev liblzma-dev
 cargo install pwninit
+
+snap install vmlinux-to-elf
